@@ -4,6 +4,10 @@ import Main from "../Layout/Main";
 import CallInterface from "../Pages/CallInterface/CallInterface";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Home from "../Pages/Home/Home/Home";
+import Login from "../Pages/Login/Login";
+import SignUp from "../Pages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
+
 
 export const router = createBrowserRouter([
   {
@@ -12,15 +16,23 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <PrivateRoute><Home /></PrivateRoute>,
       },
       {
         path: "/call",
-        element: <CallInterface />,
+        element: <PrivateRoute><CallInterface /></PrivateRoute>,
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
+      },
+      {
+        path:'login',
+        element: <Login></Login>
+      },
+      {
+        path:'signup',
+        element: <SignUp></SignUp>
       },
     ],
   },
