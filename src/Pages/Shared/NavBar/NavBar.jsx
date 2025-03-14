@@ -13,6 +13,9 @@ function Navbar() {
         <Link to="/call" className="px-4">
           Start Call
         </Link>
+        <Link to="/login" className="px-4">
+          Login
+        </Link>
       </div>
     </nav>
   );
