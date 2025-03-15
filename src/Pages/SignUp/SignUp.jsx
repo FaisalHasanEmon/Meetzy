@@ -7,15 +7,15 @@ import { useForm } from "react-hook-form";
 
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-// import { AuthContext } from "../../Provider/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosPublic from "../../hooks/UseAxiosPublic";
 
 
 
 
 const SignUp = () => {
-//   const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -27,85 +27,85 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   
-//   const onSubmit = (data) => {
-//     createUser(data.email, data.password)
-//     .then(result => {
-//         const loggedUser = result.user;
-//         console.log("User Created:", loggedUser);
-
-//         updateUserProfile(data.name, data.photoURL)
-//         .then(() => {
-//             console.log("User profile info updated");
-
-//             const userInfo = {
-//                 uid: loggedUser.uid, 
-//                 name: data.name,
-//                 email: data.email,
-//                 photoURL: data.photoURL
-//             };
-
-//             axiosPublic.post('/users', userInfo) 
-          
-//             .then(res => {
-//                 if (res.data.insertedId) {
-//                     console.log("User added to the database");
-//                     reset();
-//                     Swal.fire({
-//                         position: "top-end",
-//                         icon: "success",
-//                         title: "User Created Successfully",
-//                         showConfirmButton: false,
-//                         timer: 1500
-//                     });
-//                     navigate('/');
-//                 }
-//             })
-//             .catch(error => console.log("Database Error:", error));
-
-//         })
-//         .catch(error => console.log("Profile Update Error:", error));
-//     })
-//     .catch(error => console.log("Create User Error:", error));
-// };
-
-
-const onSubmit = (data) => {
+  const onSubmit = (data) => {
     createUser(data.email, data.password)
-      .then((result) => {
-        // const loggedUser = result.user;
-        // console.log("User Created:");
-  
+    .then(result => {
+        const loggedUser = result.user;
+        console.log("User Created:", loggedUser);
+
         updateUserProfile(data.name, data.photoURL)
-          .then(() => {
+        .then(() => {
             console.log("User profile info updated");
-            reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User Created Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/");
-          })
-          .catch((error) => {
-            console.log("Profile Update Error:", error);
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: error.message,
-            });
-          });
-      })
-      .catch((error) => {
-        console.log("Create User Error:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: error.message,
-        });
-      });
-  };
+
+            const userInfo = {
+                uid: loggedUser.uid, 
+                name: data.name,
+                email: data.email,
+                photoURL: data.photoURL
+            };
+
+            axiosPublic.post('/users', userInfo) 
+          
+            .then(res => {
+                if (res.data.insertedId) {
+                    console.log("User added to the database");
+                    reset();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "User Created Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/');
+                }
+            })
+            .catch(error => console.log("Database Error:", error));
+
+        })
+        .catch(error => console.log("Profile Update Error:", error));
+    })
+    .catch(error => console.log("Create User Error:", error));
+};
+
+
+// const onSubmit = (data) => {
+//     createUser(data.email, data.password)
+//       .then((result) => {
+//         // const loggedUser = result.user;
+//         // console.log("User Created:");
+  
+//         updateUserProfile(data.name, data.photoURL)
+//           .then(() => {
+//             console.log("User profile info updated");
+//             reset();
+//             Swal.fire({
+//               position: "top-end",
+//               icon: "success",
+//               title: "User Created Successfully",
+//               showConfirmButton: false,
+//               timer: 1500,
+//             });
+//             navigate("/");
+//           })
+//           .catch((error) => {
+//             console.log("Profile Update Error:", error);
+//             Swal.fire({
+//               icon: "error",
+//               title: "Oops...",
+//               text: error.message,
+//             });
+//           });
+//       })
+//       .catch((error) => {
+//         console.log("Create User Error:", error);
+//         Swal.fire({
+//           icon: "error",
+//           title: "Oops...",
+//           text: error.message,
+//         });
+//       });
+//   };
   
   return (
     <div className="hero   card bg-base-100 shadow-2xl card-body ">
