@@ -1,7 +1,9 @@
 import axios from "axios";
+import serverDomain from "./ServerDomain";
 
 const axiosPublic =axios.create({
-    baseURL: 'https://task-manager-application-server-kappa.vercel.app'
+    baseURL: serverDomain,
+   
 })
 const useAxiosPublic = () => {
     return axiosPublic;
