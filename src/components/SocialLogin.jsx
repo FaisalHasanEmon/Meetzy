@@ -29,13 +29,21 @@ const SocialLogin = () => {
     }
 
     return (
-        <div className="p-8">
+        <div>
             <div className="divider"></div>
             <div>
-                <button onClick={handleGoogleSignIn} className="btn">
-                    <FaGoogle className="mr-2"></FaGoogle>
-                    Google
-                </button>
+            <button
+            onClick={handleGoogleSignIn}
+              type="button"
+              className="w-full border py-3 rounded-lg flex items-center justify-center"
+            >
+              <img
+                src="https://img.icons8.com/color/20/000000/google-logo.png"
+                alt="Google"
+                className="mr-2"
+              />
+              Login with Google
+            </button>
             </div>
         </div>
     );
