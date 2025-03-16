@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const WelcomePage = () => {
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     return (
         <div className="h-screen bg-gradient-to-r from-blue-50 to-blue-100 flex flex-col justify-center items-center p-8 md:p-12 text-center overflow-hidden relative">
             <div className="absolute inset-0 bg-[url('/path/to/your/pattern.svg')] opacity-10"></div>
@@ -30,7 +32,7 @@ const WelcomePage = () => {
                     <Link to='/login' className="px-10 py-2 bg-blue-600 text-white rounded-lg text-xl font-semibold shadow-lg transform transition-all hover:bg-blue-700 hover:scale-105 duration-300">
                         Login
                     </Link>
-                    <Link to='/register' className="px-10 py-2 bg-transparent border-2 border-blue-600 text-blue-600 rounded-lg text-xl font-semibold shadow-lg transform transition-all hover:bg-blue-600 hover:text-white hover:scale-105 duration-300">
+                    <Link to='/signUp' className="px-10 py-2 bg-transparent border-2 border-blue-600 text-blue-600 rounded-lg text-xl font-semibold shadow-lg transform transition-all hover:bg-blue-600 hover:text-white hover:scale-105 duration-300">
                         Sign Up
                     </Link>
                 </div>

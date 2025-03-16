@@ -1,98 +1,138 @@
-import React, { useState } from 'react';
-import illustration from '../../assets/illustration.png';
-import background from '../../assets/background.jpg';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState, useRef } from "react";
+import illustration from "../../assets/illustration.png";
+import bgImage from "../../assets/background.jpg";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    rememberMe: false,
-  });
+  const [disabled, setDisabled] = useState(true);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value,
-    });
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then(() => {
+        Swal.fire({
+          title: "User Login Successful!",
+          icon: "success",
+          showClass: { popup: "animate_animated animate_fadeInDown" },
+          hideClass: { popup: "animate_animated animate_fadeOutUp" },
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Login Failed",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form Data:', formData);
+  const handleValidateCaptcha = (e) => {
+    if (validateCaptcha(e.target.value)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   };
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${background}) `}}
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <h1 className="text-4xl md:text-5xl font-extrabold text-blue-600 mb-4 animate-pulse">
-        Welcome to Meetzy
-      </h1>
-
-      <div className="bg-white rounded-lg shadow-lg flex w-3/4 max-w-4xl">
-        <div className="w-1/2 p-8 flex flex-col items-center justify-center">
-          <img src={illustration} alt="Illustration" className="w-auto h-auto mb-4" />
+      <div className="flex flex-col md:flex-row w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden mx-4">
+        {/* Left Side - Illustration */}
+        <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-white p-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-700 text-center mb-4">
+            Welcome Back!
+          </h2>
+          <img
+            src={illustration}
+            alt="Illustration"
+            className="w-full max-w-xs md:max-w-sm h-auto"
+          />
         </div>
-        <div className="w-1/2 p-8">
-          <form onSubmit={handleSubmit}>
-            <label className="block text-gray-700 mb-2">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="email@service.com"
-              className="w-full p-3 border rounded-lg mb-4"
-            />
-            <label className="block text-gray-700 mb-2">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="••••••••"
-              className="w-full p-3 border rounded-lg mb-4"
-            />
-            <div className="flex items-center justify-between mb-4">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleChange}
-                  className="mr-2"
-                />
-                Remember Me
-              </label>
-              <a href="#" className="text-blue-500">Forgot Password?</a>
-            </div>
 
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-3 rounded-lg mb-4"
-            >
-              Login
-            </button>
-
-            <button
-              type="button"
-              className="w-full border py-3 rounded-lg flex items-center justify-center"
-            >
-              <img
-                src="https://img.icons8.com/color/20/000000/google-logo.png"
-                alt="Google"
-                className="mr-2"
+        {/* Right Side - Login Form */}
+        <div className="w-full md:w-1/2 p-6 md:p-8">
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="form-control">
+              <label className="block text-gray-700 mb-2">Email</label>
+              <input
+                ref={emailRef}
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                className="input input-bordered w-full"
+                required
               />
-              Login with Google
-            </button>
+            </div>
+            <div className="form-control">
+              <label className="block text-gray-700 mb-2">Password</label>
+              <input
+                ref={passwordRef}
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                className="input input-bordered w-full"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="block text-gray-700">
+                <LoadCanvasTemplate />
+              </label>
+              <input
+                onBlur={handleValidateCaptcha}
+                type="text"
+                name="captcha"
+                placeholder="Type the text above"
+                className="input input-bordered w-full"
+                required
+              />
+              <button className="btn btn-outline btn-xs mt-2">Validate</button>
+            </div>
+            <div className="form-control mt-4">
+              <input
+                disabled={disabled}
+                className="btn btn-primary w-full"
+                type="submit"
+                value="Login"
+              />
+            </div>
           </form>
-
-          <p className="text-center mt-4">
-            Don’t have an account? <Link to='/register' className="text-blue-500">Sign Up</Link >
+          <p className="py-4 text-gray-700 text-center">
+            <small>
+              New here?{" "}
+              <Link className="text-blue-600" to="/signup">
+                Create an account
+              </Link>
+            </small>
           </p>
+          <SocialLogin />
         </div>
       </div>
     </div>
