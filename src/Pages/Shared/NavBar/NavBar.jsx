@@ -144,6 +144,9 @@ function Navbar() {
           <Link to="/call" className="hover:text-gray-300">
             Start Call
           </Link>
+          <Link to="/aboutUs" className="hover:text-gray-300">
+            About Us
+          </Link>
         </div>
 
         {/* User Profile / Login */}
@@ -194,6 +197,9 @@ function Navbar() {
           </Link>
           <Link to="/call" className="block py-2 px-4 hover:bg-blue-800">
             Start Call
+          </Link>
+          <Link to="/aboutUs" className="block py-2 px-4 hover:bg-blue-800">
+            About Us
           </Link>
           {user ? (
             <>
