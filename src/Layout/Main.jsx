@@ -25,7 +25,8 @@ const Main = () => {
     const location = useLocation();
 
     
-    const noHeaderFooter = location.pathname === '/login' || location.pathname === '/signup' ;
+    const noHeaderFooter = ["/login", "/signup", "/welcomePage"].includes(location.pathname);
+    ;
     return (
         <div>
            {noHeaderFooter || <Navbar></Navbar>}
