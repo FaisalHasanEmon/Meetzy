@@ -7,12 +7,20 @@ function Home() {
       <p className="mt-4 text-gray-600">
         High-quality video calls anytime, anywhere.
       </p>
-      <Link
-        to="/call"
-        className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg"
-      >
-        Start a Call
-      </Link>
+      <div className="flex justify-center items-center gap-5">
+        <Link
+          to="/call"
+          className="mt-6 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg"
+        >
+          Create a new meeting
+        </Link>
+        <Link
+          to="/call"
+          className="mt-6 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg"
+        >
+          Join a meeting
+        </Link>
+      </div>
     </div>
   );
 }
