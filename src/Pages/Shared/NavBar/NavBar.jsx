@@ -144,8 +144,14 @@ function Navbar() {
           <Link to="/call" className="hover:text-gray-300">
             Start Call
           </Link>
+          <Link to="/features" className="hover:text-gray-300">
+            Features
+          </Link>
           <Link to="/aboutUs" className="hover:text-gray-300">
             About Us
+          </Link>
+          <Link to="/whyMeetzy" className="hover:text-gray-300">
+            Why Meetzy
           </Link>
         </div>
 
@@ -198,8 +204,14 @@ function Navbar() {
           <Link to="/call" className="block py-2 px-4 hover:bg-blue-800">
             Start Call
           </Link>
+          <Link to="/features" className="block py-2 px-4 hover:bg-blue-800">
+            Features
+          </Link>
           <Link to="/aboutUs" className="block py-2 px-4 hover:bg-blue-800">
             About Us
+          </Link>
+          <Link to="/whyMeetzy" className="block py-2 px-4 hover:bg-blue-800">
+            Why Meetzy
           </Link>
           {user ? (
             <>
