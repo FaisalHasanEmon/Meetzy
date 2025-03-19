@@ -13,25 +13,30 @@
 // };
 
 // export default Main;
-
 import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "../Pages/Shared/NavBar/NavBar";
+import MainNavbar from "../Pages/Shared/NavBar/NavBar"; // Navbar for logged-in users
+import AuthNavbar from "../Pages/Shared/AuthNavbar/AuthNavbar"; // Navbar for auth pages
 import Footer from "../Pages/Shared/Footer/Footer";
 
 const Main = () => {
   const location = useLocation();
+  const isAuthenticated = localStorage.getItem("user"); // Check if user is logged in
 
-  // Show Navbar on these pages, but hide Footer
-  const onlyNavbarPages = ["/login", "/signup", "/welcomePage"].includes(
+  // Define pages where `AuthNavbar` should be displayed instead of `MainNavbar`
+  const authPages = ["/login", "/signUp", "/welcomePage", "/aboutUs"].includes(
     location.pathname
   );
 
   return (
     <div>
-      <Navbar /> {/* Always show Navbar */}
+      {/* Show `AuthNavbar` for login/signup/welcome pages, otherwise show `MainNavbar` */}
+      {authPages ? <AuthNavbar /> : <MainNavbar />}
+
+      {/* Render the page content */}
       <Outlet />
-      {onlyNavbarPages || <Footer />}{" "}
-      {/* Show Footer only if it's NOT a login, signup, or welcome page */}
+
+      {/* Show Footer only if NOT on login, signup, or welcome pages */}
+      {!authPages && <Footer />}
     </div>
   );
 };
