@@ -14,26 +14,26 @@
 
 // export default Main;
 
-
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Pages/Shared/NavBar/NavBar";
 import Footer from "../Pages/Shared/Footer/Footer";
 
-
-
 const Main = () => {
-    const location = useLocation();
+  const location = useLocation();
 
-    
-    const noHeaderFooter = ["/login", "/signup", "/welcomePage"].includes(location.pathname);
-    ;
-    return (
-        <div>
-           {noHeaderFooter || <Navbar></Navbar>}
-           <Outlet></Outlet>
-              {noHeaderFooter || <Footer></Footer>}
-        </div>
-    );
+  // Show Navbar on these pages, but hide Footer
+  const onlyNavbarPages = ["/login", "/signup", "/welcomePage"].includes(
+    location.pathname
+  );
+
+  return (
+    <div>
+      <Navbar /> {/* Always show Navbar */}
+      <Outlet />
+      {onlyNavbarPages || <Footer />}{" "}
+      {/* Show Footer only if it's NOT a login, signup, or welcome page */}
+    </div>
+  );
 };
 
 export default Main;
