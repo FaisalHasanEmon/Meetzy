@@ -7,7 +7,7 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 
 function Home() {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateMeetingModal, setisCreateMeetingModal] = useState(false);
   const [meetingCode, setMeetingCode] = useState('');
   const { user } = useContext(AuthContext); 
   const userEmail = user?.email || 'user@example.com';
@@ -24,7 +24,7 @@ function Home() {
   const handleCreateMeeting = () => {
     const code = generateMeetingCode();
     setMeetingCode(code);
-    setIsModalOpen(true);
+    setisCreateMeetingModal(true);
   };
 
   const handleShareCode = () => {
@@ -42,11 +42,11 @@ function Home() {
   const handleJoinMeeting = () => {
     // navigate(`/call/${meetingCode}`);
     navigate(`/call`);
-    setIsModalOpen(false);
+    setisCreateMeetingModal(false);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setisCreateMeetingModal(false);
   };
 
   return (
@@ -62,15 +62,19 @@ function Home() {
         >
           Create a new meeting
         </button>
-        <Link
+        {/* <Link
           to="/call"
-          className="mt-6 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg"
+          className="mt-6 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg" */}
+       
+        <button
+          onClick={() => setisCreateMeetingModal(true)}
+          className="mt-6 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-200"
         >
           Join a meeting
-        </Link>
+        </button>
       </div>
 
-      {isModalOpen && (
+      {isCreateMeetingModal && (<>
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg w-96">
             <h2 className="text-2xl font-bold mb-4">Meeting Details</h2>
@@ -118,7 +122,9 @@ function Home() {
               </button>
           </div>
         </div>
-      )}
+        <isCreateMeetingModal closeModal={() => setisCreateMeetingModal(false)} /></>)}
+    
+      
     </div>
   );
 }
