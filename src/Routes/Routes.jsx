@@ -8,7 +8,9 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import WelcomePage from "../Pages/WelcomePage/WelcomePage";
-
+import AboutUs from "../Pages/AboutUs/aboutUs";
+import FeaturePage from "../Pages/FeaturePage/FeaturePage";
+import VideoCall from "../Pages/VideoCall/VideoCall";
 
 export const router = createBrowserRouter([
   {
@@ -17,25 +19,53 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <PrivateRoute><Home /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/call",
-        element: <PrivateRoute><CallInterface /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CallInterface />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/call/:meetingCode",
+        element: <VideoCall></VideoCall>,
+      },
+      {
+        path: "/features",
+        element: (
+          <privateRoute>
+            <FeaturePage></FeaturePage>
+          </privateRoute>
+        ),
       },
       {
         path: "/dashboard",
-        element: <PrivateRoute><Dashboard /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
       {
-        path:'login',
-        element: <Login></Login>
+        path: "login",
+        element: <Login></Login>,
       },
       {
-        path:'signup',
-        element: <SignUp></SignUp>
+        path: "signup",
+        element: <SignUp></SignUp>,
       },
-      /*added private routes for the welcome page*/ 
+      {
+        path: "aboutUs",
+        element: <AboutUs></AboutUs>,
+      },
+      /*added private routes for the welcome page*/
       {
         path: "/welcomePage",
         element: <WelcomePage />,
