@@ -5,7 +5,7 @@ const WelcomePage = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     return (
-        <div className="h-screen bg-gradient-to-r from-blue-50 to-blue-100 flex flex-col justify-center items-center p-8 md:p-12 text-center overflow-hidden relative">
+        <div className="h-screen max-w-full bg-gradient-to-r from-blue-50 to-blue-100 flex flex-col justify-center items-center p-8 md:p-12 text-center overflow-hidden relative">
             <div className="absolute inset-0 bg-[url('/path/to/your/pattern.svg')] opacity-10"></div>
             <div className="max-w-2xl mx-auto relative z-10">
                 <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-blue-900">

@@ -181,7 +181,7 @@ function Navbar() {
             </div>
           ) : (
             <Link
-              to="/login"
+              to="/welcomePage"
               className="bg-gray-800 px-4 py-2 rounded hover:bg-gray-700"
             >
               Login

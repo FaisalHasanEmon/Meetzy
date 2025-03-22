@@ -22,14 +22,17 @@ const Main = () => {
   const location = useLocation();
 
   // Show Navbar on these pages, but hide Footer
-  const onlyNavbarPages = ["/login", "/signup", "/welcomePage"].includes(
+  const onlyNavbarPages = ["/login", "/signup", "/welcomePage", "/call"].includes(
     location.pathname
   );
 
   return (
     <div>
       <Navbar /> {/* Always show Navbar */}
-      <Outlet />
+      <div className="min-h-[calc(100vh-550px)]">
+        <Outlet />
+      </div>
+      
       {onlyNavbarPages || <Footer />}{" "}
       {/* Show Footer only if it's NOT a login, signup, or welcome page */}
     </div>

@@ -8,7 +8,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import WelcomePage from "../Pages/WelcomePage/WelcomePage";
-import AboutUs from "../Pages/AboutUs/aboutUs";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {

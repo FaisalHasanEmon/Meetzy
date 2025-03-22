@@ -7,7 +7,7 @@ const AboutUs = () => {
     { name: "Azim", role: "UI/UX Designer", img: "/team/member2.jpg" },
     { name: "Hridoy", role: "Project Manager", img: "/team/member3.jpg" },
     {
-      name: "Soikot",
+      name: "Saikat",
       role: "Backend Developer",
       img: "/team/member4.jpg",
     },
