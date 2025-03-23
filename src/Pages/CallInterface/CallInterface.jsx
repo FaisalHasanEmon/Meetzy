@@ -12,6 +12,7 @@ import {
   Users,
   Info,
   MessageCircle,
+  X,
 } from "lucide-react";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -30,6 +31,10 @@ const CallInterface = () => {
   const [newMessage, setNewMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [currentEmoji, setCurrentEmoji] = useState(null);
+  const [showMoreOptions, setShowMoreOptions] = useState(false);
+
+  // Ref for the input field
+  const inputRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -56,6 +61,13 @@ const CallInterface = () => {
       document.body.style.overflow = "auto"; // Re-enable scrolling when unmounting
     };
   }, []);
+
+  // Auto-focus the input field when the sidebar is opened
+  useEffect(() => {
+    if (isSidebarOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isSidebarOpen]);
 
   // Toggle mute/unmute
   const toggleMute = () => {
@@ -127,8 +139,9 @@ const CallInterface = () => {
   // Send message
   const sendMessage = () => {
     if (newMessage.trim()) {
-      setMessages([...messages, newMessage]);
-      setNewMessage("");
+      setMessages([...messages, newMessage]); // Add new message to the list
+      setNewMessage(""); // Clear the input field
+      inputRef.current.focus(); // Refocus the input field after sending
     }
   };
 
@@ -158,60 +171,123 @@ const CallInterface = () => {
 
         {/* Display Selected Emoji */}
         {currentEmoji && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl animate-bounce">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl sm:text-6xl animate-bounce">
             {currentEmoji}
           </div>
         )}
       </div>
 
       {/* Sidebar for Chat Messages */}
-      <div className={`absolute right-0 top-0 w-80 h-full bg-gray-800 text-white transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <div className="flex justify-between items-center p-4">
+      <div
+        className={`fixed right-0 top-0 w-full sm:w-80 h-full bg-gray-800 text-white transition-transform duration-300 ${
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Sidebar Header with Close Button */}
+        <div className="flex justify-between items-center p-4 pt-20 border-b border-gray-700">
           <h2 className="text-lg font-bold">Messages</h2>
-          <button onClick={toggleSidebar} className="text-white">Close</button>
+          <button onClick={toggleSidebar} className="text-white hover:bg-gray-700 p-2 rounded-full">
+            <X className="text-white" size={24} /> {/* Close button */}
+          </button>
         </div>
-        <div className="px-4 py-2 overflow-y-auto h-full space-y-4">
+
+        {/* Chat Messages */}
+        <div className="px-4 py-2 overflow-y-auto h-[calc(100%-8rem)] space-y-4">
           {messages.map((msg, index) => (
-            <div key={index} className="bg-gray-700 p-2 rounded-lg">{msg}</div>
+            <div key={index} className="bg-gray-700 p-2 rounded-lg">
+              {msg}
+            </div>
           ))}
         </div>
-        <div className="absolute bottom-16 w-full flex justify-center p-3">
-          <input type="text" value={newMessage} onChange={handleMessageChange} onKeyPress={handleKeyPress} className="w-3/4 p-2 bg-gray-700 text-white rounded-lg" placeholder="Type a message..." />
-          <button onClick={sendMessage} className="ml-2 p-2 bg-blue-600 text-white rounded-lg">Send</button>
+
+        {/* Message Input */}
+        <div className="absolute bottom-0 w-full flex justify-center p-3 bg-gray-800">
+          <input
+            ref={inputRef} // Ref for auto-focus
+            type="text"
+            value={newMessage}
+            onChange={handleMessageChange}
+            onKeyPress={handleKeyPress}
+            className="w-3/4 p-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            placeholder="Type a message..."
+          />
+          <button onClick={sendMessage} className="ml-2 p-2 bg-blue-600 text-white rounded-lg">
+            Send
+          </button>
         </div>
       </div>
 
-      {/* /* Controls */ }
-      <div className="absolute bottom-5 w-full flex flex-wrap justify-center space-x-3 sm:space-x-6 bg-opacity-70 py-3 rounded-xl">
-        <button onClick={toggleMute} className={`p-3 rounded-full ${isMuted ? "bg-gray-600" : "bg-gray-800"} hover:bg-gray-700`}>
-          {isMuted ? <MicOff className="text-white" size={24} /> : <Mic className="text-white" size={24} />}
+      {/* Controls (Hidden on mobile when sidebar is open) */}
+      <div
+        className={`absolute bottom-5 w-full flex flex-wrap justify-center space-x-2 sm:space-x-3 md:space-x-6 bg-opacity-70 py-2 sm:py-3 rounded-xl z-50 ${
+          isSidebarOpen ? "hidden sm:flex" : "flex"
+        }`}
+      >
+        {/* Main Controls */}
+        <button
+          onClick={toggleMute}
+          className={`p-2 sm:p-3 rounded-full ${isMuted ? "bg-gray-600" : "bg-gray-800"} hover:bg-gray-700`}
+        >
+          {isMuted ? <MicOff className="text-white" size={20} /> : <Mic className="text-white" size={20} />}
         </button>
-        <button onClick={toggleCamera} className={`p-3 rounded-full ${isCameraOff ? "bg-gray-600" : "bg-gray-800"} hover:bg-gray-700`}>
-          {isCameraOff ? <VideoOff className="text-white" size={24} /> : <Video className="text-white" size={24} />}
+        <button
+          onClick={toggleCamera}
+          className={`p-2 sm:p-3 rounded-full ${isCameraOff ? "bg-gray-600" : "bg-gray-800"} hover:bg-gray-700`}
+        >
+          {isCameraOff ? <VideoOff className="text-white" size={20} /> : <Video className="text-white" size={20} />}
         </button>
-        <button onClick={screenStream ? stopScreenShare : startScreenShare} className="p-3 rounded-full bg-gray-800 hover:bg-gray-700"><Monitor className="text-white" size={24} /></button>
-        <button onClick={() => setShowEmojiPicker(!showEmojiPicker)} className="p-3 rounded-full bg-gray-800 hover:bg-gray-700"><Smile className="text-white" size={24} /></button>
-        {/* More Options */}
-<button className="p-3 rounded-full bg-gray-800 hover:bg-gray-700">
-          <MoreHorizontal className="text-white" size={24} />
+        <button
+          onClick={screenStream ? stopScreenShare : startScreenShare}
+          className="p-2 sm:p-3 rounded-full bg-gray-800 hover:bg-gray-700"
+        >
+          <Monitor className="text-white" size={20} />
         </button>
-        {showEmojiPicker && <div className="absolute bottom-20"><Picker data={data} onEmojiSelect={handleEmojiClick} /></div>}
+        <button
+          onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+          className="p-2 sm:p-3 rounded-full bg-gray-800 hover:bg-gray-700"
+        >
+          <Smile className="text-white" size={20} />
+        </button>
 
-        <button onClick={endCall} className="p-3 rounded-full bg-red-600 hover:bg-red-700"><Phone className="text-white" size={24} /></button>
-               {/* Info Button */}
-        <button className="p-3 rounded-full bg-gray-800 hover:bg-gray-700">
-          <Info className="text-white" size={24} />
+        {/* More Options Dropdown */}
+        <div className="relative">
+          <button
+            onClick={() => setShowMoreOptions(!showMoreOptions)}
+            className="p-2 sm:p-3 rounded-full bg-gray-800 hover:bg-gray-700"
+          >
+            <MoreHorizontal className="text-white" size={20} />
+          </button>
+          {showMoreOptions && (
+            <div className="absolute bottom-14 right-0 bg-gray-800 rounded-lg shadow-lg">
+              <button className="w-full p-3 hover:bg-gray-700 flex items-center">
+                <Info className="text-white mr-2" size={20} /> Info
+              </button>
+              <button className="w-full p-3 hover:bg-gray-700 flex items-center">
+                <Users className="text-white mr-2" size={20} /> Participants
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* End Call Button */}
+        <button onClick={endCall} className="p-2 sm:p-3 rounded-full bg-red-600 hover:bg-red-700">
+          <Phone className="text-white" size={20} />
         </button>
 
-                {/* Participants Button */}
-                <button className="p-3 rounded-full bg-gray-800 hover:bg-gray-700">
-          <Users className="text-white" size={24} />
+        {/* Chat Button */}
+        <button onClick={toggleSidebar} className="p-2 sm:p-3 rounded-full bg-gray-800 hover:bg-gray-700">
+          <MessageCircle className="text-white" size={20} />
         </button>
-
-        <button onClick={toggleSidebar} className="p-3 rounded-full bg-gray-800 hover:bg-gray-700"><MessageCircle className="text-white" size={24} /></button>
       </div>
+
+      {/* Emoji Picker */}
+      {showEmojiPicker && (
+        <div className="absolute bottom-20">
+          <Picker data={data} onEmojiSelect={handleEmojiClick} />
+        </div>
+      )}
     </div>
   );
 };
 
-export default CallInterface
+export default CallInterface;

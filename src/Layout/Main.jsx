@@ -26,7 +26,7 @@ const Main = () => {
   const authPages = ["/login", "/signUp", "/welcomePage", "/aboutUs"].includes(
     location.pathname
   );
-
+     
   return (
     <div>
       {/* Show `AuthNavbar` for login/signup/welcome pages, otherwise show `MainNavbar` */}
@@ -36,7 +36,7 @@ const Main = () => {
       <Outlet />
 
       {/* Show Footer only if NOT on login, signup, or welcome pages */}
-      {!authPages && <Footer />}
+      {authPages && <Footer />}
     </div>
   );
 };

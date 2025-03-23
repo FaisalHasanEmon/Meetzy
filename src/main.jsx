@@ -29,7 +29,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider> {/* ✅ Now correctly defined */}
       {/* <QueryClientProvider client={queryClient}> */}
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-full mx-auto">
         <RouterProvider router={router} />
       </div>
       {/* </QueryClientProvider> */}
