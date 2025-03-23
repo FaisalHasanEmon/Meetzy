@@ -9,6 +9,8 @@ import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import WelcomePage from "../Pages/WelcomePage/WelcomePage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import FeaturePage from "../Pages/FeaturePage/FeaturePage";
+import VideoCall from "../Pages/VideoCall/VideoCall";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,18 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <CallInterface />
           </PrivateRoute>
+        ),
+      },
+      {
+        path: "/call/:meetingCode",
+        element: <VideoCall></VideoCall>,
+      },
+      {
+        path: "/features",
+        element: (
+          <privateRoute>
+            <FeaturePage></FeaturePage>
+          </privateRoute>
         ),
       },
       {
