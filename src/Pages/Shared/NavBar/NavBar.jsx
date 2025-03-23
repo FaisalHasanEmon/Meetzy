@@ -144,13 +144,6 @@ function Navbar() {
           <Link to="/call" className="hover:text-gray-300">
             Start Call
           </Link>
-          <Link to="/features" className="hover:text-gray-300">
-            Features
-          </Link>
-
-          <Link to="/whyMeetzy" className="hover:text-gray-300">
-            Why Meetzy
-          </Link>
         </div>
 
         {/* User Profile / Login */}
