@@ -6,6 +6,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 function Home() {
   const navigate = useNavigate();
   const [isCreateMeetingModal, setisCreateMeetingModal] = useState(false);
+  const [joinAMeeting, setJoinAMeeting] = useState(false);
   const [meetingCode, setMeetingCode] = useState("");
   const { user } = useContext(AuthContext);
   const userEmail = user?.email || "user@example.com";
@@ -61,18 +62,15 @@ function Home() {
         >
           Create a new meeting
         </button>
-        {/* <Link
-          to="/call"
-          className="mt-6 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg" */}
 
         <button
-          onClick={() => setisCreateMeetingModal(true)}
+          onClick={() => setJoinAMeeting(true)}
           className="mt-6 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-200"
         >
           Join a meeting
         </button>
       </div>
-
+      {/* Create a meeting modal */}
       {isCreateMeetingModal && (
         <>
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -95,20 +93,21 @@ function Home() {
                 </label>
                 <input
                   type="text"
-                  // value={meetingCode}
+                  value={meetingCode}
+                  readOnly
                   className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </div>
               <div className="flex justify-between">
-                {/* <button
+                <button
                   onClick={handleShareCode}
                   className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   Share Code
-                </button> */}
+                </button>
                 <button
                   onClick={handleJoinMeeting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className=" bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   Join Meeting
                 </button>
@@ -121,9 +120,51 @@ function Home() {
               </button>
             </div>
           </div>
-          <isCreateMeetingModal
-            closeModal={() => setisCreateMeetingModal(false)}
-          />
+        </>
+      )}
+      {/* Join a meeting modal */}
+      {joinAMeeting && (
+        <>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white p-8 rounded-lg w-96">
+              <h2 className="text-2xl font-bold mb-4">Meeting Details</h2>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Your Email:
+                </label>
+                <input
+                  type="text"
+                  value={userEmail}
+                  readOnly
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Meeting Code:
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter A Meeting Code"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="flex justify-between">
+                <button
+                  onClick={handleJoinMeeting}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Join Meeting
+                </button>
+              </div>
+              <button
+                onClick={() => setJoinAMeeting(false)}
+                className="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </>
       )}
     </div>

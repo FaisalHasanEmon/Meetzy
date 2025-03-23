@@ -141,7 +141,7 @@ function Navbar() {
           <Link to="/dashboard" className="hover:text-gray-300">
             Dashboard
           </Link>
-          <Link to="/call" className="hover:text-gray-300">
+          <Link to="/" className="hover:text-gray-300">
             Start Call
           </Link>
         </div>
