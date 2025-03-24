@@ -45,7 +45,10 @@ const CallInterface = () => {
     // Initialize media stream
     const initializeMedia = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true,
+        });
         setLocalStream(stream);
         if (localVideoRef.current) {
           localVideoRef.current.srcObject = stream;
@@ -92,7 +95,9 @@ const CallInterface = () => {
   // Start screen sharing
   const startScreenShare = async () => {
     try {
-      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+      const stream = await navigator.mediaDevices.getDisplayMedia({
+        video: true,
+      });
       setScreenStream(stream);
       if (localVideoRef.current) {
         localVideoRef.current.srcObject = stream;
@@ -167,7 +172,11 @@ const CallInterface = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white relative">
       {/* Video Display */}
       <div className="absolute inset-0 flex items-center justify-center bg-black">
-        <video ref={localVideoRef} autoPlay className="w-full h-full object-cover"></video>
+        <video
+          ref={localVideoRef}
+          autoPlay
+          className="w-full h-full object-cover"
+        ></video>
 
         {/* Display Selected Emoji */}
         {currentEmoji && (
@@ -179,14 +188,17 @@ const CallInterface = () => {
 
       {/* Sidebar for Chat Messages */}
       <div
-        className={`fixed right-0 top-0 w-full sm:w-80 h-full bg-gray-800 text-white transition-transform duration-300 ${
+        className={`fixed z-50 right-0 top-0 w-full sm:w-80 h-[calc(100vh-64px)] translate-y-[64px] bg-gray-800 text-white transition-transform duration-300 ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Sidebar Header with Close Button */}
-        <div className="flex justify-between items-center p-4 pt-20 border-b border-gray-700">
+        <div className="flex justify-between items-center p-4 pt-5 border-b border-gray-700">
           <h2 className="text-lg font-bold">Messages</h2>
-          <button onClick={toggleSidebar} className="text-white hover:bg-gray-700 p-2 rounded-full">
+          <button
+            onClick={toggleSidebar}
+            className="text-white hover:bg-gray-700 p-2 rounded-full"
+          >
             <X className="text-white" size={24} /> {/* Close button */}
           </button>
         </div>
@@ -211,7 +223,10 @@ const CallInterface = () => {
             className="w-3/4 p-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             placeholder="Type a message..."
           />
-          <button onClick={sendMessage} className="ml-2 p-2 bg-blue-600 text-white rounded-lg">
+          <button
+            onClick={sendMessage}
+            className="ml-2 p-2 bg-blue-600 text-white rounded-lg"
+          >
             Send
           </button>
         </div>
@@ -226,15 +241,27 @@ const CallInterface = () => {
         {/* Main Controls */}
         <button
           onClick={toggleMute}
-          className={`p-2 sm:p-3 rounded-full ${isMuted ? "bg-gray-600" : "bg-gray-800"} hover:bg-gray-700`}
+          className={`p-2 sm:p-3 rounded-full ${
+            isMuted ? "bg-gray-600" : "bg-gray-800"
+          } hover:bg-gray-700`}
         >
-          {isMuted ? <MicOff className="text-white" size={20} /> : <Mic className="text-white" size={20} />}
+          {isMuted ? (
+            <MicOff className="text-white" size={20} />
+          ) : (
+            <Mic className="text-white" size={20} />
+          )}
         </button>
         <button
           onClick={toggleCamera}
-          className={`p-2 sm:p-3 rounded-full ${isCameraOff ? "bg-gray-600" : "bg-gray-800"} hover:bg-gray-700`}
+          className={`p-2 sm:p-3 rounded-full ${
+            isCameraOff ? "bg-gray-600" : "bg-gray-800"
+          } hover:bg-gray-700`}
         >
-          {isCameraOff ? <VideoOff className="text-white" size={20} /> : <Video className="text-white" size={20} />}
+          {isCameraOff ? (
+            <VideoOff className="text-white" size={20} />
+          ) : (
+            <Video className="text-white" size={20} />
+          )}
         </button>
         <button
           onClick={screenStream ? stopScreenShare : startScreenShare}
@@ -270,12 +297,18 @@ const CallInterface = () => {
         </div>
 
         {/* End Call Button */}
-        <button onClick={endCall} className="p-2 sm:p-3 rounded-full bg-red-600 hover:bg-red-700">
+        <button
+          onClick={endCall}
+          className="p-2 sm:p-3 rounded-full bg-red-600 hover:bg-red-700"
+        >
           <Phone className="text-white" size={20} />
         </button>
 
         {/* Chat Button */}
-        <button onClick={toggleSidebar} className="p-2 sm:p-3 rounded-full bg-gray-800 hover:bg-gray-700">
+        <button
+          onClick={toggleSidebar}
+          className="p-2 sm:p-3 rounded-full bg-gray-800 hover:bg-gray-700"
+        >
           <MessageCircle className="text-white" size={20} />
         </button>
       </div>
