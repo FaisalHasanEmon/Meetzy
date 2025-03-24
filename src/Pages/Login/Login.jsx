@@ -12,7 +12,9 @@ import SocialLogin from "../../components/SocialLogin";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+  const [quickLogin, setQuickLogin] = useState(null);
+
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const { signIn } = useContext(AuthContext);
@@ -57,7 +59,9 @@ const Login = () => {
       setDisabled(true);
     }
   };
-
+  const handleQuickLogin = () => {
+    setQuickLogin({ email: "test@gmail.com", password: "Test12!" });
+  };
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center"
@@ -87,6 +91,7 @@ const Login = () => {
                 name="email"
                 placeholder="Enter your email"
                 className="input input-bordered w-full"
+                value={quickLogin?.email}
                 required
               />
             </div>
@@ -98,6 +103,7 @@ const Login = () => {
                 name="password"
                 placeholder="Enter your password"
                 className="input input-bordered w-full"
+                value={quickLogin?.password}
                 required
               />
             </div>
@@ -111,16 +117,25 @@ const Login = () => {
                 name="captcha"
                 placeholder="Type the text above"
                 className="input input-bordered w-full"
-                required
+                // required
               />
               <button className="btn btn-outline btn-xs mt-2">Validate</button>
+            </div>
+            <div className="form-control mt-4">
+              <input
+                // disabled={disabled}
+                className="btn btn-primary w-full"
+                type="submit"
+                value="Login"
+              />
             </div>
             <div className="form-control mt-4">
               <input
                 disabled={disabled}
                 className="btn btn-primary w-full"
                 type="submit"
-                value="Login"
+                value="Quick Login"
+                onClick={handleQuickLogin}
               />
             </div>
           </form>
