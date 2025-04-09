@@ -226,7 +226,7 @@ const Login = () => {
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="flex flex-col md:flex-row w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden mx-4">
-        {/* Left Side - Illustration */}
+      {/* left */}
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-white p-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-700 text-center mb-4">
             Welcome Back!
