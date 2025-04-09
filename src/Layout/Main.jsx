@@ -1,18 +1,4 @@
-// import { Outlet } from "react-router-dom";
-// import Footer from "../Pages/Shared/Footer/Footer";
-// import Navbar from "../Pages/Shared/NavBar/NavBar";
 
-// const Main = () => {
-//   return (
-//     <div>
-//       <Navbar></Navbar>
-//       <Outlet></Outlet>
-//       <Footer></Footer>
-//     </div>
-//   );
-// };
-
-// export default Main;
 import { Outlet, useLocation } from "react-router-dom";
 import MainNavbar from "../Pages/Shared/NavBar/NavBar"; // Navbar for logged-in users
 import AuthNavbar from "../Pages/Shared/AuthNavbar/AuthNavbar"; // Navbar for auth pages
@@ -23,7 +9,7 @@ const Main = () => {
   const isAuthenticated = localStorage.getItem("user"); // Check if user is logged in
 
   // Define pages where `AuthNavbar` should be displayed instead of `MainNavbar`
-  const authPages = ["/login", "/signUp", "/welcomePage", "/aboutUs"].includes(
+  const authPages = [].includes(
     location.pathname
   );
 
