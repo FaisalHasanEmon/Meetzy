@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 
 import CallInterface from "../Pages/CallInterface/CallInterface";
-import Dashboard from "../Pages/Dashboard/Dashboard";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -45,14 +44,7 @@ export const router = createBrowserRouter([
           </privateRoute>
         ),
       },
-      {
-        path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        ),
-      },
+     
       {
         path: "login",
         element: <Login></Login>,
