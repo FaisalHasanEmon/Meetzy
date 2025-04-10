@@ -1,46 +1,190 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+// import React, { useContext, useEffect, useState, useRef } from "react";
+// import illustration from "../../assets/illustration.png";
+// import bgImage from "../../assets/background.jpg";
+// import {
+//   loadCaptchaEnginge,
+//   LoadCanvasTemplate,
+//   validateCaptcha,
+// } from "react-simple-captcha";
+// import { Link, useLocation, useNavigate } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import SocialLogin from "../../components/SocialLogin";
+// import { AuthContext } from "../../Provider/AuthProvider";
+
+// const Login = () => {
+//   const [disabled, setDisabled] = useState(false);
+//   const [quickLogin, setQuickLogin] = useState(null);
+
+//   const emailRef = useRef(null);
+//   const passwordRef = useRef(null);
+//   const { signIn } = useContext(AuthContext);
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const from = location.state?.from?.pathname || "/";
+
+//   useEffect(() => {
+//     loadCaptchaEnginge(6);
+//   }, []);
+
+//   const handleLogin = (event) => {
+//     event.preventDefault();
+//     const form = event.target;
+//     const email = form.email.value;
+//     const password = form.password.value;
+
+//     signIn(email, password)
+//       .then(() => {
+//         Swal.fire({
+//           title: "User Login Successful!",
+//           icon: "success",
+//           showClass: { popup: "animate_animated animate_fadeInDown" },
+//           hideClass: { popup: "animate_animated animate_fadeOutUp" },
+//         });
+//         navigate("/");
+//       })
+//       .catch((error) => {
+//         Swal.fire({
+//           title: "Login Failed",
+//           text: error.message,
+//           icon: "error",
+//           confirmButtonText: "Try Again",
+//         });
+//       });
+//   };
+
+//   const handleValidateCaptcha = (e) => {
+//     if (validateCaptcha(e.target.value)) {
+//       setDisabled(false);
+//     } else {
+//       setDisabled(true);
+//     }
+//   };
+//   const handleQuickLogin = () => {
+//     setQuickLogin({ email: "test@gmail.com", password: "Test12!" });
+//   };
+//   return (
+//     <div
+//       className="min-h-screen flex items-center justify-center bg-cover bg-center"
+//       style={{ backgroundImage: `url(${bgImage})` }}
+//     >
+//       <div className="flex flex-col md:flex-row w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden mx-4">
+//         {/* Left Side - Illustration */}
+//         <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-white p-4">
+//           <h2 className="text-3xl md:text-4xl font-bold text-gray-700 text-center mb-4">
+//             Welcome Back!
+//           </h2>
+//           <img
+//             src={illustration}
+//             alt="Illustration"
+//             className="w-full max-w-xs md:max-w-sm h-auto"
+//           />
+//         </div>
+
+//         {/* Right Side - Login Form */}
+//         <div className="w-full md:w-1/2 p-6 md:p-8">
+//           <form onSubmit={handleLogin} className="space-y-4">
+//             <div className="form-control">
+//               <label className="block text-gray-700 mb-2">Email</label>
+//               <input
+//                 ref={emailRef}
+//                 type="email"
+//                 name="email"
+//                 placeholder="Enter your email"
+//                 className="input input-bordered w-full"
+//                 value={quickLogin?.email}
+//                 required
+//               />
+//             </div>
+//             <div className="form-control">
+//               <label className="block text-gray-700 mb-2">Password</label>
+//               <input
+//                 ref={passwordRef}
+//                 type="password"
+//                 name="password"
+//                 placeholder="Enter your password"
+//                 className="input input-bordered w-full"
+//                 value={quickLogin?.password}
+//                 required
+//               />
+//             </div>
+//             <div className="form-control">
+//               <label className="block text-gray-700">
+//                 <LoadCanvasTemplate />
+//               </label>
+//               <input
+//                 onBlur={handleValidateCaptcha}
+//                 type="text"
+//                 name="captcha"
+//                 placeholder="Type the text above"
+//                 className="input input-bordered w-full"
+//                 // required
+//               />
+//               <button className="btn btn-outline btn-xs mt-2">Validate</button>
+//             </div>
+//             <div className="form-control mt-4">
+//               <input
+//                 // disabled={disabled}
+//                 className="btn btn-primary w-full"
+//                 type="submit"
+//                 value="Login"
+//               />
+//             </div>
+//             <div className="form-control mt-4">
+//               <input
+//                 disabled={disabled}
+//                 className="btn btn-primary w-full"
+//                 type="submit"
+//                 value="Quick Login"
+//                 onClick={handleQuickLogin}
+//               />
+//             </div>
+//           </form>
+//           <p className="py-4 text-gray-700 text-center">
+//             <small>
+//               New here?{" "}
+//               <Link className="text-blue-600" to="/signup">
+//                 Create an account
+//               </Link>
+//             </small>
+//           </p>
+//           <SocialLogin />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;
+
+import React, { useContext, useState } from "react";
 import illustration from "../../assets/illustration.png";
 import bgImage from "../../assets/background.jpg";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
+
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/SocialLogin";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
-  const [disabled, setDisabled] = useState(false);
-  const [quickLogin, setQuickLogin] = useState(null);
-
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const { signIn } = useContext(AuthContext);
+  const { signIn, resetPassword } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const handleLogin = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-
+    setDisabled(true);
     signIn(email, password)
       .then(() => {
         Swal.fire({
           title: "User Login Successful!",
           icon: "success",
-          showClass: { popup: "animate_animated animate_fadeInDown" },
-          hideClass: { popup: "animate_animated animate_fadeOutUp" },
         });
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         Swal.fire({
@@ -49,19 +193,33 @@ const Login = () => {
           icon: "error",
           confirmButtonText: "Try Again",
         });
+      })
+      .finally(() => setDisabled(false));
+  };
+
+  const handleForgotPassword = () => {
+    if (!email) {
+      return Swal.fire("Oops!", "Please enter your email first", "warning");
+    }
+
+    resetPassword(email)
+      .then(() => {
+        Swal.fire(
+          "Password Reset Sent",
+          "Check your email to reset your password",
+          "success"
+        );
+      })
+      .catch((error) => {
+        Swal.fire("Error", error.message, "error");
       });
   };
 
-  const handleValidateCaptcha = (e) => {
-    if (validateCaptcha(e.target.value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
   const handleQuickLogin = () => {
-    setQuickLogin({ email: "test@gmail.com", password: "Test12!" });
+    setEmail("test@gmail.com");
+    setPassword("Test12!");
   };
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center"
@@ -86,59 +244,56 @@ const Login = () => {
             <div className="form-control">
               <label className="block text-gray-700 mb-2">Email</label>
               <input
-                ref={emailRef}
                 type="email"
                 name="email"
                 placeholder="Enter your email"
                 className="input input-bordered w-full"
-                value={quickLogin?.email}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
+
             <div className="form-control">
               <label className="block text-gray-700 mb-2">Password</label>
               <input
-                ref={passwordRef}
                 type="password"
                 name="password"
                 placeholder="Enter your password"
                 className="input input-bordered w-full"
-                value={quickLogin?.password}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              <p
+                className="text-right text-sm text-blue-500 hover:underline cursor-pointer"
+                onClick={handleForgotPassword}
+              >
+                Forgot password?
+              </p>
             </div>
-            <div className="form-control">
-              <label className="block text-gray-700">
-                <LoadCanvasTemplate />
-              </label>
-              <input
-                onBlur={handleValidateCaptcha}
-                type="text"
-                name="captcha"
-                placeholder="Type the text above"
-                className="input input-bordered w-full"
-                // required
-              />
-              <button className="btn btn-outline btn-xs mt-2">Validate</button>
-            </div>
-            <div className="form-control mt-4">
-              <input
-                // disabled={disabled}
-                className="btn btn-primary w-full"
-                type="submit"
-                value="Login"
-              />
-            </div>
+
             <div className="form-control mt-4">
               <input
                 disabled={disabled}
                 className="btn btn-primary w-full"
                 type="submit"
-                value="Quick Login"
-                onClick={handleQuickLogin}
+                value={disabled ? "Logging in..." : "Login"}
               />
             </div>
+
+            <div className="form-control mt-4">
+              <button
+                type="button"
+                disabled={disabled}
+                className="btn btn-secondary w-full"
+                onClick={handleQuickLogin}
+              >
+                Quick Login
+              </button>
+            </div>
           </form>
+
           <p className="py-4 text-gray-700 text-center">
             <small>
               New here?{" "}
@@ -147,6 +302,7 @@ const Login = () => {
               </Link>
             </small>
           </p>
+
           <SocialLogin />
         </div>
       </div>
