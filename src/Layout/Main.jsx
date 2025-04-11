@@ -3,18 +3,15 @@ import MainNavbar from "../Pages/Shared/NavBar/NavBar"; // Navbar for logged-in 
 import AuthNavbar from "../Pages/Shared/AuthNavbar/AuthNavbar"; // Navbar for auth pages
 import Footer from "../Pages/Shared/Footer/Footer";
 
+
 const Main = () => {
   const location = useLocation();
   const isAuthenticated = localStorage.getItem("user"); // Check if user is logged in
 
   // Define pages where `AuthNavbar` should be displayed instead of `MainNavbar`
-  const authPages = [
-    "/login",
-    "/signUp",
-    "/welcomePage",
-    "/aboutUs",
-    "/features",
-  ].includes(location.pathname);
+  const authPages = [].includes(
+    location.pathname
+  );
 
   return (
     <div>
@@ -24,8 +21,7 @@ const Main = () => {
       {/* Render the page content */}
       <Outlet />
 
-      {/* Show Footer only if NOT on login, signup, or welcome pages */}
-      {authPages && <Footer />}
+      <Footer></Footer>
     </div>
   );
 };
