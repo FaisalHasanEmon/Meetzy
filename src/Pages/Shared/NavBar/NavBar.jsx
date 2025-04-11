@@ -37,6 +37,14 @@ function Navbar() {
           <div className="hidden md:flex space-x-6 font-bold text-2xl">
           
             <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-gray-500 underline" : "hover:text-gray-500"
+              }
+            >
+             Home
+            </NavLink>
+            <NavLink
               to="/features"
               className={({ isActive }) =>
                 isActive ? "text-gray-500 underline" : "hover:text-gray-500"
@@ -115,6 +123,9 @@ function Navbar() {
         {isOpen && (
           <div className="md:hidden bg-purple-300/90 backdrop-blur-md shadow-md transition-all duration-300">
            
+            <Link to="/" className="block py-2 px-4 hover:bg-purple-400">
+              Home
+            </Link>
             <Link to="/features" className="block py-2 px-4 hover:bg-purple-400">
               Features
             </Link>
