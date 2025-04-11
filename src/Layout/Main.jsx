@@ -1,4 +1,3 @@
-
 import { Outlet, useLocation } from "react-router-dom";
 import MainNavbar from "../Pages/Shared/NavBar/NavBar"; // Navbar for logged-in users
 import AuthNavbar from "../Pages/Shared/AuthNavbar/AuthNavbar"; // Navbar for auth pages
@@ -22,7 +21,7 @@ const Main = () => {
       <Outlet />
 
       {/* Show Footer only if NOT on login, signup, or welcome pages */}
-      {!authPages && <Footer />}
+      {authPages && <Footer />}
     </div>
   );
 };

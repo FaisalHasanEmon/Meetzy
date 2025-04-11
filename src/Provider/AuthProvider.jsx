@@ -68,7 +68,7 @@
 
 
 import { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 import { app } from '../firebase/firebase.config';
 
 export const AuthContext = createContext(null);
@@ -122,7 +122,11 @@ const AuthProvider = ({ children }) => {
 
         return () => unsubscribe();
     }, []);
-
+   
+    const resetPassword = (email) => {
+        setLoading(true);
+        return sendPasswordResetEmail(auth, email);
+      };
     const authInfo = {
         user,
         loading,
@@ -133,6 +137,7 @@ const AuthProvider = ({ children }) => {
         googleSignIn,
         facebookSignIn,
         githubSignIn,
+        resetPassword
     };
 
     return (

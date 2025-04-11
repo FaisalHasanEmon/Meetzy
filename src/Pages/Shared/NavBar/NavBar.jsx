@@ -30,7 +30,7 @@ function Navbar() {
         <div className="flex justify-between items-center container mx-auto py-3 px-5">
           {/* Logo */}
           <Link to="/" className="font-bold">
-            <img src={logoe} alt="Logo" className="w-40 h-auto" />
+            <img src={logoe} alt="Meetzy Logo" className="w-40 h-auto" />
           </Link>
 
           {/* Desktop Menu */}
@@ -38,20 +38,15 @@ function Navbar() {
             <NavLink
               to="/call"
               className={({ isActive }) =>
-                isActive
-                  ? "text-gray-500 underline"
-                  : "hover:text-gray-500"
+                isActive ? "text-gray-500 underline" : "hover:text-gray-500"
               }
             >
               StartCall
             </NavLink>
-           
             <NavLink
               to="/features"
               className={({ isActive }) =>
-                isActive
-                  ? "text-gray-500 underline"
-                  : "hover:text-gray-500"
+                isActive ? "text-gray-500 underline" : "hover:text-gray-500"
               }
             >
               Features
@@ -59,9 +54,7 @@ function Navbar() {
             <NavLink
               to="/whyMeetzy"
               className={({ isActive }) =>
-                isActive
-                  ? "text-gray-500 underline"
-                  : "hover:text-gray-500"
+                isActive ? "text-gray-500 underline" : "hover:text-gray-500"
               }
             >
               About
@@ -76,7 +69,7 @@ function Navbar() {
                   {user.photoURL && (
                     <img
                       src={user.photoURL}
-                      alt="User"
+                      alt={`${user.displayName}'s profile`}
                       className="w-8 h-8 rounded-full border-2 border-gray-300 shadow-sm"
                     />
                   )}
@@ -84,7 +77,7 @@ function Navbar() {
                 </button>
 
                 {/* Dropdown */}
-                <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-xl w-44 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100">
+                <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-xl w-44 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100 z-50">
                   <Link
                     to="/profile"
                     className="block px-4 py-3 font-medium bg-gradient-to-r from-blue-500 to-teal-400 hover:text-white"
@@ -104,19 +97,16 @@ function Navbar() {
               <Link to="/login">
                 <button className="text-white flex items-center bg-[#14b5a7] px-6 py-2 rounded-full shadow-md space-x-3 hover:scale-105 transition-all duration-300">
                   <span className="text-xl">
-                  <FaFacebook />
+                    <FaFacebook />
                   </span>
                   <span className="text-xl">
-                  <FaGoogle />
+                    <FaGoogle />
                   </span>
                   <span className="text-xl">
-                    <i className="fab fa-google"></i>
-                  </span>
-                  <span className="text-xl">
-                  <FaGithub />
+                    <FaGithub />
                   </span>
                   <span className="h-5 w-px bg-white mx-2"></span>
-                  <span className="font-bold ">Log in</span>
+                  <span className="font-bold">Log in</span>
                 </button>
               </Link>
             )}
@@ -130,10 +120,7 @@ function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-purple-300/90 backdrop-blur-md shadow-md">
-            <Link to="/dashboard" className="block py-2 px-4 hover:bg-purple-400">
-              Dashboard
-            </Link>
+          <div className="md:hidden bg-purple-300/90 backdrop-blur-md shadow-md transition-all duration-300">
             <Link to="/call" className="block py-2 px-4 hover:bg-purple-400">
               Start Call
             </Link>
@@ -164,7 +151,7 @@ function Navbar() {
         )}
       </nav>
 
-      {/* Spacer */}
+      {/* Spacer to prevent content from being hidden behind navbar */}
       <div className="h-16 md:h-20"></div>
     </>
   );

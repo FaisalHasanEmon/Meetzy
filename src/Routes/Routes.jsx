@@ -7,9 +7,10 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import WelcomePage from "../Pages/WelcomePage/WelcomePage";
-import AboutUs from "../Pages/AboutUs/aboutUs";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 import FeaturePage from "../Pages/FeaturePage/FeaturePage";
 import VideoCall from "../Pages/VideoCall/VideoCall";
+import WhyMeetzy from "../Pages/WhyMeetzy/WhyMeetzy";
 
 export const router = createBrowserRouter([
   {

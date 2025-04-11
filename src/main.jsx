@@ -10,7 +10,6 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider> {/* ✅ Now correctly defined */}
       {/* <QueryClientProvider client={queryClient}> */}
-
         <RouterProvider router={router} />
   
       {/* </QueryClientProvider> */}
