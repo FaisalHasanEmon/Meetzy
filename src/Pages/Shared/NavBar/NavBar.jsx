@@ -31,6 +31,9 @@ function Navbar() {
           <Link to="/whyMeetzy" className="hover:text-gray-300">
             Why Meetzy
           </Link>
+          <Link to="/contact" className="hover:text-gray-300">
+            Contact
+          </Link>
         </div>
 
         {/* User Profile / Login */}

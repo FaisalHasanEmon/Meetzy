@@ -12,6 +12,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import FeaturePage from "../Pages/FeaturePage/FeaturePage";
 import VideoCall from "../Pages/VideoCall/VideoCall";
 import WhyMeetzy from "../Pages/WhyMeetzy/WhyMeetzy";
+import ContactPage from "../Pages/Contact/ContactPage";
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +49,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/whyMeetzy",
-        element: <WhyMeetzy></WhyMeetzy>
+        element: <WhyMeetzy></WhyMeetzy>,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage></ContactPage>,
       },
       {
         path: "/dashboard",
