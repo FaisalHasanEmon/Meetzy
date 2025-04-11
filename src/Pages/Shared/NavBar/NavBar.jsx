@@ -35,14 +35,7 @@ function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 font-bold text-2xl">
-            <NavLink
-              to="/call"
-              className={({ isActive }) =>
-                isActive ? "text-gray-500 underline" : "hover:text-gray-500"
-              }
-            >
-              StartCall
-            </NavLink>
+          
             <NavLink
               to="/features"
               className={({ isActive }) =>
@@ -52,7 +45,7 @@ function Navbar() {
               Features
             </NavLink>
             <NavLink
-              to="/whyMeetzy"
+              to="/aboutUs"
               className={({ isActive }) =>
                 isActive ? "text-gray-500 underline" : "hover:text-gray-500"
               }
@@ -121,14 +114,12 @@ function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden bg-purple-300/90 backdrop-blur-md shadow-md transition-all duration-300">
-            <Link to="/call" className="block py-2 px-4 hover:bg-purple-400">
-              Start Call
-            </Link>
+           
             <Link to="/features" className="block py-2 px-4 hover:bg-purple-400">
               Features
             </Link>
-            <Link to="/whyMeetzy" className="block py-2 px-4 hover:bg-purple-400">
-              Why Meetzy
+            <Link to="/aboutUs" className="block py-2 px-4 hover:bg-purple-400">
+            About us
             </Link>
             {user ? (
               <>
