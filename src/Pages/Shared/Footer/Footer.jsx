@@ -10,14 +10,14 @@ function Footer() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      <footer className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-700 text-white p-10">
+      <footer className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-700 text-white p">
         <aside className="flex flex-col items-center text-center">
 <img src={logoe} alt="" />
           
         </aside>
 
         {/* Navigation Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-6 text-center sm:text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8  lg:text-center container mx-auto sm:p-10">
           <motion.nav
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
