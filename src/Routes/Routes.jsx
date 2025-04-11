@@ -11,6 +11,7 @@ import WelcomePage from "../Pages/WelcomePage/WelcomePage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import FeaturePage from "../Pages/FeaturePage/FeaturePage";
 import VideoCall from "../Pages/VideoCall/VideoCall";
+import WhyMeetzy from "../Pages/WhyMeetzy/WhyMeetzy";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             <FeaturePage></FeaturePage>
           </privateRoute>
         ),
+      },
+      {
+        path: "/whyMeetzy",
+        element: <WhyMeetzy></WhyMeetzy>
       },
       {
         path: "/dashboard",

@@ -54,14 +54,14 @@ const AboutUs = () => {
       </div>
 
       {/* View Management Team Button */}
-      <div className="mt-10">
+      {/* <div className="mt-10">
         <a
           href="/team"
           className="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300 inline-flex items-center gap-2"
         >
           <span> View Management Team</span>
         </a>
-      </div>
+      </div> */}
 
       {/* Management Team Section */}
       <div className="mt-16 max-w-6xl mx-auto">
