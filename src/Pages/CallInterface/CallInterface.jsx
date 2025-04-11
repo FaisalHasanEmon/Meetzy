@@ -169,13 +169,13 @@ const CallInterface = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[500px] bg-black text-white relative">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white relative">
       {/* Video Display */}
       <div className="absolute inset-0 flex items-center justify-center bg-black">
         <video
           ref={localVideoRef}
           autoPlay
-          className="w-full h-full object-contain"
+          className="w-full h-full object-cover"
         ></video>
 
         {/* Display Selected Emoji */}
