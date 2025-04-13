@@ -13,15 +13,8 @@ const Main = () => {
   return (
     <div>
       {/* Show `AuthNavbar` for login/signup/welcome pages, otherwise show `MainNavbar` */}
-      {location.pathname !== "/call" ? (
-        authPages ? (
-          <AuthNavbar />
-        ) : (
-          <MainNavbar />
-        )
-      ) : (
-        ""
-      )}
+
+      {authPages ? <AuthNavbar /> : <MainNavbar />}
 
       {/* Render the page content */}
       <Outlet />
