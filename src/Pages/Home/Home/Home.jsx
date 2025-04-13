@@ -67,7 +67,7 @@ const Home = () => {
       transition={{ duration: 0.3 }}
     >
       <motion.div
-        className="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl relative border border-gray-100"
+        className="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl relative border border-gray-200"
         initial={{ scale: 0.85, y: 30 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.85, y: 30 }}
