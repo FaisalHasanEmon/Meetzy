@@ -75,7 +75,7 @@
 //         <>
 //           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
 //             <div className="bg-white p-8 rounded-lg w-96">
-//               <h2 className="text-2xl font-bold mb-4">Meeting Details</h2>
+//               <h2 className="text-3xl font-bold mb-4">Meeting Details</h2>
 //               <div className="mb-4">
 //                 <label className="block text-gray-700 text-sm font-bold mb-2">
 //                   Your Email:
@@ -180,6 +180,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import safetyImage from "../../../assets/safety.svg";
 import featuresImage from "../../../assets/features.svg";
+import { FaCalendarCheck, FaPlus, FaPlusCircle, FaSignInAlt, FaUser } from "react-icons/fa";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -247,31 +248,93 @@ const Home = () => {
     </div>
   );
 
+
+  const agendaItems = [
+    { title: "Morning stand-up", time: "9:00 - 9:15" },
+    { title: "Managers catch-up", time: "10:00 - 10:30" },
+    { title: "Ben 1:1", time: "13:00 - 14:45" },
+    { title: "KPI clarification", time: "15:00 - 15:30" },
+  ];
+
   return (
     <div className="bg-gray-800 text-white">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center h-[87vh] px-4 text-center bg-gradient-to-b from-gray-700 to-gray-800">
-        <h1 className="text-4xl font-extrabold text-white">Welcome to Meetzy</h1>
-        <p className="mt-4 text-lg text-gray-300">High-quality video calls anytime, anywhere.</p>
-
-        <div className="flex flex-col md:flex-row gap-4 mt-8">
-          <button
-            onClick={handleCreateMeeting}
-            className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-300"
-          >
-            Create a New Meeting
-          </button>
-          <button
-            onClick={() => setShowJoinModal(true)}
-            className="px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-all duration-300"
-          >
-            Join a Meeting
-          </button>
+      <section className="min-h-[87vh] flex flex-col md:flex-row items-start justify-center bg-white px-6 py-10">
+      
+      {/* Left: Agenda */}
+      <div className="w-full md:w-[50%] max-w-md bg-white border-r border-gray-200 pr-6 md:pr-10">
+        <h2 className="text-2xl font-semibold text-gray-900 text-center mb-4">
+          Good morning, {user.displayName}!
+        </h2>
+        <div className="flex justify-center mb-6">
+          <div className="avatar">
+            <div className="w-20 rounded-full ring ring-gray-300 ring-offset-base-100 ring-offset-2">
+              <img src={user.photoURL} alt="Profile" />
+            </div>
+          </div>
         </div>
-      </section>
+
+        <div className="text-left">
+          <p className="font-medium text-gray-800 mb-3">Your agenda today:</p>
+          <div className="space-y-4">
+            {agendaItems.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between"
+              >
+                <div>
+                  <p className="font-medium text-gray-900">{item.title}</p>
+                  <p className="text-sm text-gray-500">{item.time}</p>
+                </div>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-all">
+                    Reschedule
+                  </button>
+                  <button className="px-3 py-1 text-sm font-medium text-blue-600 border border-blue-600 hover:bg-blue-50 rounded-md transition-all">
+                    Change attendance
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Right: Meeting Actions */}
+      <div className="w-full md:w-[50%] mt-16 md:mt-0 pl-0 md:pl-10 flex flex-col gap-6">
+      <div className="flex flex-col items-center justify-center text-center">
+      <h1 className="text-4xl font-bold text-black">Welcome to Meetzy</h1>
+      <p className="mt-4 text-gray-600">
+        High-quality video calls anytime, anywhere.
+      </p>
+        </div>
+        <button
+          onClick={handleCreateMeeting}
+          className="flex items-center gap-4 border border-gray-200 hover:shadow-md transition-all bg-white rounded-lg px-10 py-8"
+        >
+          <FaUser className="text-blue-600 text-2xl" />
+          <span className="text-lg font-medium text-blue-700">Start a meeting</span>
+        </button>
+
+        <button
+          onClick={() => setShowJoinModal(true)}
+          className="flex items-center gap-4 border border-gray-200 hover:shadow-md transition-all bg-white rounded-lg px-10 py-8"
+        >
+          <FaPlus className="text-blue-600 text-3xl" />
+          <span className="text-lg font-medium text-blue-700">Join a meeting</span>
+        </button>
+
+        <button
+          className="flex items-center gap-4 border border-gray-200 hover:shadow-md transition-all bg-white rounded-lg px-10 py-8"
+        >
+          <FaCalendarCheck className="text-blue-600 text-3xl" />
+          <span className="text-lg font-medium text-blue-700">Schedule a meeting</span>
+        </button>
+      </div>
+    </section>
 
       {/* Privacy & Safety Section */}
-      <section className="py-16 bg-gray-800 text-white">
+      {/* <section className="py-16 bg-gray-800 text-white">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Privacy & Safety</h2>
@@ -290,10 +353,10 @@ const Home = () => {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features Section */}
-      <section className="py-16 bg-gray-800 text-white">
+      {/* <section className="py-16 bg-gray-800 text-white">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row-reverse items-center gap-8">
           <div className="md:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Features</h2>
@@ -306,12 +369,7 @@ const Home = () => {
             <p className="text-gray-400">
               Simply share a link and collaborate with all your contacts in one click.
             </p>
-            {/* <a
-              href="#features"
-              className="inline-block mt-4 text-teal-500 hover:text-teal-400 font-semibold"
-            >
-              See All Features
-            </a> */}
+           
           </div>
           <div className="md:w-1/2">
             <img
@@ -321,7 +379,7 @@ const Home = () => {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Create Meeting Modal */}
       {showCreateModal && (

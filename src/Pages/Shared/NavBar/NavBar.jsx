@@ -21,17 +21,7 @@ function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6">
-          <Link to="/dashboard" className="hover:text-gray-300">
-            Dashboard
-          </Link>
-          <Link to="/" className="hover:text-gray-300">
-            Start Call
-          </Link>
-          <Link to="/whyMeetzy" className="hover:text-gray-300">
-            Why Meetzy
-          </Link>
-        </div>
+        
 
         {/* User Profile / Login */}
         <div className="hidden md:flex items-center space-x-4">
@@ -67,28 +57,12 @@ function Navbar() {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
-        <button onClick={toggleMenu} className="md:hidden">
-          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
+        
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-blue-700">
-          <Link to="/dashboard" className="block py-2 px-4 hover:bg-blue-800">
-            Dashboard
-          </Link>
-          <Link to="/call" className="block py-2 px-4 hover:bg-blue-800">
-            Start Call
-          </Link>
-          <Link to="/features" className="block py-2 px-4 hover:bg-blue-800">
-            Features
-          </Link>
-
-          <Link to="/whyMeetzy" className="block py-2 px-4 hover:bg-blue-800">
-            Why Meetzy
-          </Link>
           {user ? (
             <>
               <Link to="/profile" className="block py-2 px-4 hover:bg-blue-800">
