@@ -8,24 +8,17 @@ const Main = () => {
   const isAuthenticated = localStorage.getItem("user"); // Check if user is logged in
 
   // Define pages where `AuthNavbar` should be displayed instead of `MainNavbar`
-  const authPages = [
-    "/login",
-    "/signUp",
-    "/welcomePage",
-    "/aboutUs",
-    "/features",
-  ].includes(location.pathname);
-
+  const authPages = [].includes(location.pathname);
+  console.log(location.pathname);
   return (
     <div>
       {/* Show `AuthNavbar` for login/signup/welcome pages, otherwise show `MainNavbar` */}
+
       {authPages ? <AuthNavbar /> : <MainNavbar />}
 
       {/* Render the page content */}
       <Outlet />
-
-      {/* Show Footer only if NOT on login, signup, or welcome pages */}
-      {authPages && <Footer />}
+      {location?.pathname !== "/call" ? <Footer></Footer> : ""}
     </div>
   );
 };

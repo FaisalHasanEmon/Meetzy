@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 
 import CallInterface from "../Pages/CallInterface/CallInterface";
-import Dashboard from "../Pages/Dashboard/Dashboard";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -12,6 +11,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import FeaturePage from "../Pages/FeaturePage/FeaturePage";
 import VideoCall from "../Pages/VideoCall/VideoCall";
 import WhyMeetzy from "../Pages/WhyMeetzy/WhyMeetzy";
+import Profile from "../Pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -27,17 +27,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/call",
+        path: "/call/:meetingCode",
         element: (
           <PrivateRoute>
             <CallInterface />
           </PrivateRoute>
         ),
       },
-      {
-        path: "/call/:meetingCode",
-        element: <VideoCall></VideoCall>,
-      },
+    
       {
         path: "/features",
         element: (
@@ -46,18 +43,7 @@ export const router = createBrowserRouter([
           </privateRoute>
         ),
       },
-      {
-        path: "/whyMeetzy",
-        element: <WhyMeetzy></WhyMeetzy>
-      },
-      {
-        path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        ),
-      },
+     
       {
         path: "login",
         element: <Login></Login>,
@@ -69,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "aboutUs",
         element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
       },
       /*added private routes for the welcome page*/
       {
