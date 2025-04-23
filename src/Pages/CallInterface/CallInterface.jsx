@@ -169,7 +169,7 @@ const CallInterface = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white relative">
+    <div className="flex flex-col items-center justify-center min-h-[675px] bg-black text-white relative">
       {/* Video Display */}
       <div className="absolute inset-0 flex items-center justify-center bg-black">
         <video
