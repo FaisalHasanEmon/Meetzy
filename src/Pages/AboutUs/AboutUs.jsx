@@ -1,7 +1,7 @@
 import React from "react";
 
 const AboutUs = () => {
-  // Replace these with your actual team members' data
+ 
   const teamMembers = [
     { name: "Emon", role: "Lead Developer", img: "/team/member1.jpg" },
     { name: "Azim", role: "UI/UX Designer", img: "/team/member2.jpg" },
@@ -40,7 +40,7 @@ const AboutUs = () => {
         smooth and engaging experience.
       </p>
 
-      {/* Embedded YouTube Video  */}
+      
       <div className="mt-10 flex justify-center">
         <iframe
           className="w-full max-w-3xl h-64 md:h-80 rounded-lg shadow-lg"
@@ -53,17 +53,8 @@ const AboutUs = () => {
         ></iframe>
       </div>
 
-      {/* View Management Team Button */}
-      {/* <div className="mt-10">
-        <a
-          href="/team"
-          className="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300 inline-flex items-center gap-2"
-        >
-          <span> View Management Team</span>
-        </a>
-      </div> */}
-
-      {/* Management Team Section */}
+      
+     
       <div className="mt-16 max-w-6xl mx-auto">
         <h3 className="text-3xl font-bold mb-8">Meet Our Team</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
