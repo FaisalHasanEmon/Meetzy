@@ -1,13 +1,16 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import AuthNavbar from '../Pages/Shared/AuthNavbar/AuthNavbar';
 import NavBar from '../Pages/Shared/NavBar/NavBar';
 
 const Main = () => {
+  const location = useLocation();
   return (
+    
     <div className="min-h-screen flex flex-col">
       {/* Main Navigation (Fixed Top) */}
-      <div className='hidden md:block sm:pt-0'> <NavBar /></div>
+      <div className='hidden md:block sm:pt-0'> {location.pathname !== "/call" && <NavBar />}
+      </div>
       
       {/* Content Area */}
       <div className="flex flex-1 flex-col md:flex-row pt-16"> {/* pt-16 for fixed navbar */}

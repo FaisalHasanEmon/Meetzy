@@ -34,7 +34,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-    
+    {
+      path: "/whyMeetzy",
+      element: <WhyMeetzy></WhyMeetzy>
+    },
       {
         path: "/features",
         element: (
