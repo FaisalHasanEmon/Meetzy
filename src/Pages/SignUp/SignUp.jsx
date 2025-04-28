@@ -53,7 +53,7 @@ const SignUp = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-800">
       <div className="flex flex-col md:flex-row items-center w-full overflow-hidden">
-        {/* Left Side - Animation & Text */}
+      
         <div className="w-full md:w-1/2 text-white p-8 flex flex-col justify-center items-center">
           <h1 className="text-4xl font-bold mb-4">Join Us Today</h1>
           <p className="text-lg text-center mb-6">
@@ -69,7 +69,7 @@ const SignUp = () => {
             </Link>
           </p>
 
-          {/* Additional Video Calling App Related Text */}
+          
           <div className="mt-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Why Choose Our Video Calling App?</h2>
             <ul className="list-disc list-inside text-left">
@@ -82,7 +82,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Right Side - Sign Up Form */}
+       
         <div className="w-full md:w-1/2 bg-white p-8">
           <h2 className="text-3xl font-bold text-center mb-6 text-blue-800">Create Account</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

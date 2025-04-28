@@ -28,12 +28,12 @@ function Navbar() {
         }`}
       >
         <div className="flex justify-between items-center container mx-auto py-3 px-5">
-          {/* Logo */}
+        
           <Link to="/" className="font-bold">
             <img src={logoe} alt="Meetzy Logo" className="w-40 h-auto" />
           </Link>
 
-          {/* Desktop Menu */}
+        
           <div className="hidden md:flex space-x-6 font-bold text-2xl">
           
             <NavLink
@@ -54,7 +54,7 @@ function Navbar() {
             </NavLink>
           </div>
 
-          {/* User Profile or Login */}
+         
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <div className="relative group">
@@ -105,13 +105,13 @@ function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+       
           <button onClick={toggleMenu} className="md:hidden">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+      
         {isOpen && (
           <div className="md:hidden bg-purple-300/90 backdrop-blur-md shadow-md transition-all duration-300">
            
@@ -142,7 +142,7 @@ function Navbar() {
         )}
       </nav>
 
-      {/* Spacer to prevent content from being hidden behind navbar */}
+   
       <div className="h-16 md:h-20"></div>
     </>
   );

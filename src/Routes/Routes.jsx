@@ -60,7 +60,7 @@ export const router = createBrowserRouter([
         path: "profile",
         element: <Profile></Profile>,
       },
-      /*added private routes for the welcome page*/
+     
       {
         path: "/welcomePage",
         element: <WelcomePage />,

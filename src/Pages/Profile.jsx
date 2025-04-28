@@ -7,7 +7,7 @@ const Profile = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 flex items-center justify-center p-4">
             <div className="bg-white shadow-2xl rounded-2xl overflow-hidden w-full max-w-2xl">
-                {/* Header */}
+           
                 <div className="bg-gradient-to-r from-indigo-500 to-blue-500 p-6 text-white text-center relative">
                     <img
                         className="w-32 h-32 rounded-full mx-auto border-4 border-white shadow-xl"
@@ -18,7 +18,7 @@ const Profile = () => {
                   
                 </div>
 
-                {/* Body */}
+                
                 <div className="p-6 space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
                         <div>
@@ -30,7 +30,7 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Stats */}
+                 
                     <div className="flex justify-around text-center mt-6">
                         <div>
                             <p className="text-xl font-bold text-purple-600">56</p>
@@ -46,7 +46,7 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Actions */}
+                  
                     <div className="flex justify-center gap-4 mt-6">
                         <button className="px-6 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300">
                             Start Call

@@ -4,7 +4,7 @@ const MeetzyPrivacyPage = () => {
   return (
     <div className="bg-white p-6 font-sans">
       <div className="max-w-5xl mx-auto mt-20 space-y-20">
-        {/* Privacy Promise Section */}
+    
         <section>
           <div className="flex flex-col sm:flex-row gap-8 items-center">
             <div className="w-full sm:w-1/2 flex justify-center">
@@ -27,7 +27,7 @@ const MeetzyPrivacyPage = () => {
           </div>
         </section>
 
-        {/* Unlimited Calls Section */}
+       
         <section>
           <div className="flex flex-col sm:flex-row gap-8 items-center">
             <div className="w-full sm:w-1/2 order-2 sm:order-1">
@@ -52,7 +52,7 @@ const MeetzyPrivacyPage = () => {
           </div>
         </section>
 
-        {/* Screen Sharing Section */}
+       
         <section>
           <div className="flex flex-col sm:flex-row gap-8 items-center">
             <div className="w-full sm:w-1/2">
@@ -77,7 +77,7 @@ const MeetzyPrivacyPage = () => {
           </div>
         </section>
 
-        {/* Multi-Participant Section */}
+     
         <section>
           <div className="flex flex-col sm:flex-row gap-8 items-center">
             <div className="w-full sm:w-1/2 order-2 sm:order-1">
@@ -102,7 +102,7 @@ const MeetzyPrivacyPage = () => {
           </div>
         </section>
 
-        {/* Recording Section */}
+    
         <section>
           <div className="flex flex-col sm:flex-row gap-8 items-center">
             <div className="w-full sm:w-1/2">

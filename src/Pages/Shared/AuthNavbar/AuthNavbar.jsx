@@ -14,9 +14,7 @@ const AuthNavbar = () => {
           Features
         </Link>
 
-        {/* <Link to="/whyMeetzy" className="hover:text-gray-300">
-          Why Meetzy
-        </Link> */}
+        
       </div>
     </nav>
   );

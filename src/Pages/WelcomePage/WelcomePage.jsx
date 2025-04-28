@@ -37,22 +37,22 @@ const WelcomePage = () => {
   return (
     <div className="relative flex h-screen w-full">
 
-      {/* Left Side with Background Image, Blur & Overlay */}
+     
       <div className="flex-1 relative overflow-hidden">
-        {/* Background Image */}
+     
         <img
           src="https://i.ibb.co.com/yKqRCPh/islamic-8824879-1280.jpg"
           alt="Eid Background"
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         />
 
-        {/* Overlay + Blur */}
+       
         <div className="absolute top-0 left-0 w-full h-full bg-black/5 backdrop-blur-sm z-10"></div>
 
-        {/* Content */}
+       
         <div className="relative z-20 flex flex-col justify-center items-center h-full p-8 md:p-12 text-center">
 
-          {/* Countdown Timer */}
+         
           <motion.div
             className="text-sm md:text-lg font-medium text-white px-3 py-1 rounded shadow-md font-serif"
             animate={{ scale: [1, 1.02, 1], opacity: [0.8, 1, 0.8] }}
@@ -83,7 +83,7 @@ const WelcomePage = () => {
 </motion.h2>
 
       
-          {/* Headings */}
+         
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#14b6a7] to-[#236ae4] drop-shadow-2xl mt-6">
             Welcome to{" "}
             <span className="text-transparent bg-gradient-to-r from-blue-500 to-[#236ae4] bg-clip-text">
@@ -110,7 +110,7 @@ const WelcomePage = () => {
             like never before.
           </p>
 
-          {/* Glowing Icon */}
+        
           <motion.div
             className="mt-6"
             animate={{ scale: [1, 1.1, 1] }}
@@ -123,7 +123,7 @@ const WelcomePage = () => {
             />
           </motion.div>
 
-          {/* Animated Buttons */}
+        
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
