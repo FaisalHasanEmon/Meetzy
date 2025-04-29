@@ -1,11 +1,10 @@
-
-
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import HomeVideo from "../../../assets/Video.mp4";
-import { motion } from "framer-motion";
+import { FaCalendarCheck, FaPlus, FaUser } from "react-icons/fa";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,8 +14,12 @@ const Home = () => {
   const [meetingCode, setMeetingCode] = useState("");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
   const [joinCode, setJoinCode] = useState("");
   const [joinClicked, setJoinClicked] = useState(false);
+  const [scheduledMeetings, setScheduledMeetings] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [scheduleTitle, setScheduleTitle] = useState("");
 
   const generateMeetingCode = () => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -58,195 +61,200 @@ const Home = () => {
     setJoinClicked(false);
   };
 
+  const handleScheduleMeeting = () => {
+    if (!scheduleTitle || !selectedDate) {
+      Swal.fire({
+        icon: "error",
+        title: "Missing Fields",
+        text: "Please fill in all fields before scheduling the meeting.",
+      });
+      return;
+    }
+    setScheduledMeetings([...scheduledMeetings, { title: scheduleTitle, date: selectedDate }]);
+    setShowScheduleModal(false);
+    setScheduleTitle("");
+    setSelectedDate(null);
+  };
+
   const Modal = ({ title, children, onClose }) => (
-    <motion.div
-      className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <motion.div
-        className="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl relative border border-gray-200"
-        initial={{ scale: 0.85, y: 30 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.85, y: 30 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      >
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">{title}</h2>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-gray-100 rounded-xl w-[90%] max-w-md p-6 shadow-lg relative">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">{title}</h2>
         {children}
-        <motion.button
+        <button
           onClick={onClose}
-          className="mt-6 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2.5 rounded-lg transition-colors duration-200"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg"
         >
           Close
-        </motion.button>
-      </motion.div>
-    </motion.div>
+        </button>
+      </div>
+    </div>
   );
 
+  
+  const allMeetings = [...scheduledMeetings];
+
   return (
-    <div className="h-screen w-full bg-white text-gray-900 overflow-hidden">
-      {/* Hero Section with Background Video */}
-      <motion.section
-        className="relative flex flex-col items-center justify-center h-screen w-full text-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Background Video */}
-        <motion.video
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          aria-hidden="true"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
-        >
-          <source src={HomeVideo} type="video/webm" />
-          Your browser does not support the video tag.
-        </motion.video>
-        {/* Gradient Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/20 to-blue-900/50 pointer-events-none"></div>
+    <div className="bg-gray-800 text-white">
+      <section className="min-h-[87vh] flex flex-col md:flex-row items-start justify-center bg-white px-6 py-10">
+        <div className="w-full md:w-[50%] max-w-md bg-white border-r border-gray-200 pr-6 md:pr-10">
+          <h2 className="text-2xl font-semibold text-gray-900 text-center mb-4">
+            Good morning, {user.displayName || "User"}!
+          </h2>
+          <div className="flex justify-center mb-6">
+            <div className="avatar">
+              <div className="w-20 rounded-full ring ring-gray-300 ring-offset-base-100 ring-offset-2">
+                <img src={user.photoURL || "default-avatar.png"} alt="Profile" />
+              </div>
+            </div>
+          </div>
 
-        {/* Content */}
-        <motion.div
-          className="relative z-10 max-w-4xl w-full px-4 sm:px-6"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
-            initial={{ opacity: 0, y: 30, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
-          >
-            Welcome to Meetzy
-          </motion.h1>
-          <motion.p
-            className="mt-4 text-xl sm:text-2xl md:text-3xl text-white font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            High-quality video calls anytime, anywhere.
-          </motion.p>
+          <div className="text-left">
+            <p className="font-medium text-gray-800 mb-3">Your agenda today:</p>
+            <div className="space-y-4">
+              {allMeetings.map((item, index) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div>
+                    <p className="font-medium text-gray-900">{item.title}</p>
+                    <p className="text-sm text-gray-500">{item.time}</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <button className="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-all">
+                      Reschedule
+                    </button>
+                    <button className="px-3 py-1 text-sm font-medium text-blue-600 border border-blue-600 hover:bg-blue-50 rounded-md transition-all">
+                      Change attendance
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 mt-6 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+        <div className="w-full md:w-[50%] mt-16 md:mt-0 pl-0 md:pl-10 flex flex-col gap-6">
+          <div className="flex flex-col items-center justify-center text-center">
+            <h1 className="text-4xl font-bold text-black">Welcome to Meetzy</h1>
+            <p className="mt-4 text-gray-600">High-quality video calls anytime, anywhere.</p>
+          </div>
+          <button
+            onClick={handleCreateMeeting}
+            className="flex items-center gap-4 border border-gray-200 hover:shadow-md transition-all bg-white rounded-lg px-10 py-8"
           >
-            <motion.button
-              onClick={handleCreateMeeting}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-semibold rounded-full shadow-xl transition-all duration-300 text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
-              whileHover={{ scale: 1.1, boxShadow: "0 0 25px rgba(59, 130, 246, 0.7)" }}
-              whileTap={{ scale: 0.95 }}
+            <FaUser className="text-blue-600 text-2xl" />
+            <span className="text-lg font-medium text-blue-700">Start a meeting</span>
+          </button>
+
+          <button
+            onClick={() => setShowJoinModal(true)}
+            className="flex items-center gap-4 border border-gray-200 hover:shadow-md transition-all bg-white rounded-lg px-10 py-8"
+          >
+            <FaPlus className="text-blue-600 text-3xl" />
+            <span className="text-lg font-medium text-blue-700">Join a meeting</span>
+          </button>
+
+          <button
+            onClick={() => setShowScheduleModal(true)}
+            className="flex items-center gap-4 border border-gray-200 hover:shadow-md bg-white rounded-lg px-10 py-8"
+          >
+            <FaCalendarCheck className="text-blue-600 text-3xl" />
+            <span className="text-lg font-medium text-blue-700">Schedule a meeting</span>
+          </button>
+        </div>
+      </section>
+
+      {showScheduleModal && (
+        <Modal title="Schedule a Meeting" onClose={() => setShowScheduleModal(false)}>
+          <div className="text-left">
+            <label className="block text-sm font-medium text-gray-600 mb-1">Meeting Title</label>
+            <input
+              type="text"
+              value={scheduleTitle}
+              onChange={(e) => setScheduleTitle(e.target.value)}
+              className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg text-gray-800"
+              placeholder="e.g. Project Sync"
+            />
+            <label className="block text-sm font-medium text-gray-600 mb-1">Select Date & Time</label>
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              showTimeSelect
+              dateFormat="Pp"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800"
+            />
+            <button
+              onClick={handleScheduleMeeting}
+              className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg"
             >
-              Create a New Meeting
-            </motion.button>
-            <motion.button
-              onClick={() => setShowJoinModal(true)}
-              className="px-8 py-3 bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white font-semibold rounded-full shadow-xl transition-all duration-300 text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
-              whileHover={{ scale: 1.1, boxShadow: "0 0 25px rgba(75, 85, 99, 0.7)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Join a Meeting
-            </motion.button>
-          </motion.div>
-        </motion.div>
-      </motion.section>
+              Schedule
+            </button>
+          </div>
+        </Modal>
+      )}
 
-      {/* Create Meeting Modal */}
       {showCreateModal && (
         <Modal title="Create Meeting" onClose={() => setShowCreateModal(false)}>
           <div className="text-left">
-            <label className="block text-sm font-medium text-gray-600 mb-2">Your Email</label>
-            <motion.input
+            <label className="block text-sm font-medium text-gray-600 mb-1">Your Email</label>
+            <input
               type="text"
               readOnly
               value={userEmail}
-              className="w-full px-4 py-2.5 mb-4 border border-gray-200 rounded-lg bg-gray-50 text-gray-800 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4 }}
+              className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
             />
-            <label className="block text-sm font-medium text-gray-600 mb-2">Meeting Code</label>
-            <motion.input
+            <label className="block text-sm font-medium text-gray-600 mb-1">Meeting Code</label>
+            <input
               type="text"
               readOnly
               value={meetingCode}
-              className="w-full px-4 py-2.5 mb-4 border border-gray-200 rounded-lg bg-gray-50 text-gray-800 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
             />
-            <div className="flex gap-4">
-              <motion.button
+            <div className="flex justify-between gap-4">
+              <button
                 onClick={handleShareCode}
-                className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2.5 rounded-lg transition-colors duration-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 rounded-lg"
               >
                 Share Code
-              </motion.button>
-              <motion.button
+              </button>
+              <button
                 onClick={() => handleJoinMeeting(meetingCode)}
-                className={`flex-1 font-semibold py-2.5 rounded-lg text-white transition-colors duration-200 ${
-                  joinClicked ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"
+                className={`flex-1 font-semibold py-2 rounded-lg text-white ${
+                  joinClicked ? "bg-green-500" : "bg-blue-500 hover:bg-blue-600"
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 Join Now
-              </motion.button>
+              </button>
             </div>
           </div>
         </Modal>
       )}
 
-      {/* Join Meeting Modal */}
       {showJoinModal && (
         <Modal title="Join a Meeting" onClose={() => setShowJoinModal(false)}>
           <div className="text-left">
-            <label className="block text-sm font-medium text-gray-600 mb-2">Your Email</label>
-            <motion.input
+            <label className="block text-sm font-medium text-gray-600 mb-1">Your Email</label>
+            <input
               type="text"
               readOnly
               value={userEmail}
-              className="w-full px-4 py-2.5 mb-4 border border-gray-200 rounded-lg bg-gray-50 text-gray-800 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4 }}
+              className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
             />
-            <label className="block text-sm font-medium text-gray-600 mb-2">Meeting Code</label>
-            <motion.input
+            <label className="block text-sm font-medium text-gray-600 mb-1">Meeting Code</label>
+            <input
               type="text"
               value={joinCode}
               onChange={(e) => setJoinCode(e.target.value)}
               placeholder="Enter a meeting code"
-              className="w-full px-4 py-2.5 mb-4 border border-gray-200 rounded-lg text-gray-800 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg text-gray-800"
             />
-            <motion.button
+            <button
               onClick={() => handleJoinMeeting(joinCode)}
-              className={`w-full font-semibold py-2.5 rounded-lg text-white transition-colors duration-200 ${
-                joinClicked ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"
+              className={`w-full font-semibold py-2 rounded-lg text-white ${
+                joinClicked ? "bg-green-500" : "bg-blue-500 hover:bg-blue-600"
               }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Join Meeting
-            </motion.button>
+            </button>
           </div>
         </Modal>
       )}

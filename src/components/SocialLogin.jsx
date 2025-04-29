@@ -64,8 +64,7 @@ const SocialLogin = () => {
                 <button
                     onClick={handleGoogleSignIn}
                     type="button"
-                    className="w-full border py-3 rounded-lg flex items-center justify-center mb-2" // Add margin bottom
-                >
+                    className="w-full border py-3 rounded-lg flex items-center justify-center mb-2" >
                     <img
                         src="https://img.icons8.com/color/20/000000/google-logo.png"
                         alt="Google"

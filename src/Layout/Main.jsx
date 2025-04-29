@@ -1,24 +1,31 @@
-import { Outlet, useLocation } from "react-router-dom";
-import MainNavbar from "../Pages/Shared/NavBar/NavBar"; // Navbar for logged-in users
-import AuthNavbar from "../Pages/Shared/AuthNavbar/AuthNavbar"; // Navbar for auth pages
-import Footer from "../Pages/Shared/Footer/Footer";
+import React from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import AuthNavbar from '../Pages/Shared/AuthNavbar/AuthNavbar';
+import NavBar from '../Pages/Shared/NavBar/NavBar';
 
 const Main = () => {
   const location = useLocation();
-  const isAuthenticated = localStorage.getItem("user"); // Check if user is logged in
-
-  // Define pages where `AuthNavbar` should be displayed instead of `MainNavbar`
-  const authPages = [].includes(location.pathname);
-  console.log(location.pathname);
   return (
-    <div>
-      {/* Show `AuthNavbar` for login/signup/welcome pages, otherwise show `MainNavbar` */}
-
-      {authPages ? <AuthNavbar /> : <MainNavbar />}
-
-      {/* Render the page content */}
-      <Outlet />
-      {location?.pathname !== "/call" ? <Footer></Footer> : ""}
+    
+    <div className="min-h-screen flex flex-col">
+      {/* Main Navigation (Fixed Top) */}
+      <div className='hidden md:block sm:pt-0'>
+  {location.pathname !== "/call" && <NavBar />}
+</div>
+      
+      {/* Content Area */}
+      <div className="flex flex-1 flex-col md:flex-row pt-16"> {/* pt-16 for fixed navbar */}
+        
+        {/* AuthNavbar - Visible on all devices but changes layout */}
+        <div className="w-full md:w-56 lg:w-64 bg-blue-700 text-white shadow-md">
+      <AuthNavbar />
+</div>
+        
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };

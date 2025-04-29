@@ -1,151 +1,134 @@
-import { useState, useContext, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { FaBars, FaFacebook, FaGithub, FaGoogle, FaTimes } from "react-icons/fa";
-import { AuthContext } from "../../../Provider/AuthProvider";
-import logoe from "../../../assets/logoe.png";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/UseAuth";
 
-function Navbar() {
-  const { user, logOut } = useContext(AuthContext);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+const AuthNavbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAuth();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const handleLogout = () => logOut();
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Common link styles
+  const linkStyles = "text-white hover:bg-blue-600 transition px-3 py-2 rounded";
+  const mobileLinkStyles = "text-white hover:bg-blue-600 transition w-full text-center py-3 rounded";
 
   return (
-    <>
-      <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "backdrop-blur-md shadow-md text-[#1DCD9F]"
-            : "bg-gradient-to-r from-blue-600 via-teal-500 to-blue-700 text-white"
-        }`}
-      >
-        <div className="flex justify-between items-center container mx-auto py-3 px-5">
-        
-          <Link to="/" className="font-bold">
-            <img src={logoe} alt="Meetzy Logo" className="w-40 h-auto" />
-          </Link>
-
-        
-          <div className="hidden md:flex space-x-6 font-bold text-2xl">
-          
-            <NavLink
-              to="/features"
-              className={({ isActive }) =>
-                isActive ? "text-gray-500 underline" : "hover:text-gray-500"
-              }
-            >
-              Features
-            </NavLink>
-            <NavLink
-              to="/aboutUs"
-              className={({ isActive }) =>
-                isActive ? "text-gray-500 underline" : "hover:text-gray-500"
-              }
-            >
-              About
-            </NavLink>
-          </div>
-
-         
-          <div className="hidden md:flex items-center space-x-4">
-            {user ? (
-              <div className="relative group">
-                <button className="flex items-center space-x-3 px-4 py-2 border-gray-300 shadow-md hover:bg-gradient-to-r from-blue-500 to-teal-400 transition-all duration-300 focus:outline-none">
-                  {user.photoURL && (
-                    <img
-                      src={user.photoURL}
-                      alt={`${user.displayName}'s profile`}
-                      className="w-8 h-8 rounded-full border-2 border-gray-300 shadow-sm"
-                    />
-                  )}
-                  <span className="font-medium">{user.displayName}</span>
-                </button>
-
-                {/* Dropdown */}
-                <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-xl w-44 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100 z-50">
-                  <Link
-                    to="/profile"
-                    className="block px-4 py-3 font-medium bg-gradient-to-r from-blue-500 to-teal-400 hover:text-white"
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-left px-4 py-3 bg-gradient-to-r from-yellow-500 to-red-700 hover:text-white font-semibold relative"
-                  >
-                    <span className="absolute inset-0 bg-gradient-to-r from-purple-400 to-red-600 opacity-0 group-hover:opacity-100 transition-all duration-500"></span>
-                    <span className="relative z-10">Logout</span>
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <Link to="/login">
-                <button className="text-white flex items-center bg-[#14b5a7] px-6 py-2 rounded-full shadow-md space-x-3 hover:scale-105 transition-all duration-300">
-                  <span className="text-xl">
-                    <FaFacebook />
-                  </span>
-                  <span className="text-xl">
-                    <FaGoogle />
-                  </span>
-                  <span className="text-xl">
-                    <FaGithub />
-                  </span>
-                  <span className="h-5 w-px bg-white mx-2"></span>
-                  <span className="font-bold">Log in</span>
-                </button>
+    <nav className="bg-blue-700 text-white shadow-md">
+      <div className="container mx-auto p-4">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex flex-col space-y-2">
+          {user?.email ? (
+            <>
+              <Link to="/dashboard" className={linkStyles}>
+                Dashboard
               </Link>
-            )}
-          </div>
-
-       
-          <button onClick={toggleMenu} className="md:hidden">
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
+              <Link to="/" className={linkStyles}>
+                Start Call
+              </Link>
+              <Link to="/whyMeetzy" className={linkStyles}>
+                Why Meetzy
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/aboutUs" className={linkStyles}>
+                About Us
+              </Link>
+              <Link to="/features" className={linkStyles}>
+                Features
+              </Link>
+            </>
+          )}
         </div>
 
-      
-        {isOpen && (
-          <div className="md:hidden bg-purple-300/90 backdrop-blur-md shadow-md transition-all duration-300">
-           
-            <Link to="/features" className="block py-2 px-4 hover:bg-purple-400">
-              Features
-            </Link>
-            <Link to="/aboutUs" className="block py-2 px-4 hover:bg-purple-400">
-            About us
-            </Link>
-            {user ? (
-              <>
-                <Link to="/profile" className="block py-2 px-4 hover:bg-purple-400">
-                  Profile
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="w-full text-left py-2 px-4 hover:bg-purple-400"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <Link to="/login" className="block py-2 px-4 hover:bg-purple-400">
-                Login
-              </Link>
-            )}
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <div className="flex justify-between items-center">
+            <span className="font-medium">Meetzy</span>
+            <button
+              onClick={toggleMenu}
+              className="text-white focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
-        )}
-      </nav>
 
-   
-      <div className="h-16 md:h-20"></div>
-    </>
+          {/* Mobile Menu Dropdown */}
+          {isMenuOpen && (
+            <div className="mt-3 flex flex-col space-y-2">
+              {user?.email ? (
+                <>
+                  <Link
+                    to="/dashboard"
+                    className={mobileLinkStyles}
+                    onClick={toggleMenu}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/"
+                    className={mobileLinkStyles}
+                    onClick={toggleMenu}
+                  >
+                    Start Call
+                  </Link>
+                  <Link
+                    to="/whyMeetzy"
+                    className={mobileLinkStyles}
+                    onClick={toggleMenu}
+                  >
+                    Why Meetzy
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/aboutUs"
+                    className={mobileLinkStyles}
+                    onClick={toggleMenu}
+                  >
+                    About Us
+                  </Link>
+                  <Link
+                    to="/features"
+                    className={mobileLinkStyles}
+                    onClick={toggleMenu}
+                  >
+                    Features
+                  </Link>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </nav>
   );
-}
+};
 
-export default Navbar;
+export default AuthNavbar;
