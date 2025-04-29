@@ -1,0 +1,265 @@
+[33mcommit 053b77dfcd0bfaa993e38cdfacb64af86cc537b0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msaikat[m[33m, [m[1;31morigin/saikat[m[33m)[m
+Author: saikat1076 <chakrabortymoni335@gmail.com>
+Date:   Tue Apr 15 20:00:00 2025 +0600
+
+    saikat: redesign hompage
+
+[33mcommit 28a929fc03aaa9c88ee217ff99dcbaf244908fdf[m
+Merge: ae88b56 e9b2ab4
+Author: Faisal Hasan Emon <faisalhasanemon@gmail.com>
+Date:   Thu Apr 10 20:17:24 2025 +0600
+
+    Merge pull request #28 from FaisalHasanEmon/rayhan
+    
+    Polished homepage design
+
+[33mcommit ae88b5635cfd09b58b82026e52cbd8cab1115d74[m
+Merge: 1baa8f9 c9f62d5
+Author: Faisal Hasan Emon <faisalhasanemon@gmail.com>
+Date:   Thu Apr 10 20:02:14 2025 +0600
+
+    Merge pull request #27 from FaisalHasanEmon/saikat
+    
+    saikat: add why meetzy page
+
+[33mcommit c9f62d5c56e3497d3b09042e46cd4e248d97f0f2[m
+Author: saikat1076 <chakrabortymoni335@gmail.com>
+Date:   Thu Apr 10 01:00:11 2025 +0600
+
+    saikat: add why meetzy page
+
+[33mcommit e9b2ab406756e312f51dd14aa0d87c7b522cd118[m
+Author: Rayhan-50 <rayhanahmed.nstu@gmail.com>
+Date:   Wed Apr 9 20:16:21 2025 +0600
+
+    Polished homepage design
+
+[33mcommit 1baa8f9dd1c440ef83e58d3ae8d0c024d8cce629[m
+Merge: 4b87dba 77cb1b9
+Author: Harishankar Barman <baust.cse.200201001@gmail.com>
+Date:   Tue Apr 8 19:11:33 2025 +0600
+
+    Merge pull request #26 from FaisalHasanEmon/harishankar
+    
+    harishankar : remove the view management team buttton
+
+[33mcommit 77cb1b9551cf5823bfc033118f0d3665aff76bad[m
+Author: chayon1001 <baust.cse.200201001@gmail.com>
+Date:   Tue Apr 8 19:09:18 2025 +0600
+
+    harishankar : remove the view management team buttton
+
+[33mcommit 4b87dba48fa792aeefcd5f2d3e3c2834210a432e[m
+Merge: 94fd119 d3643d2
+Author: Faisal Hasan Emon <faisalhasanemon@gmail.com>
+Date:   Mon Mar 24 06:37:29 2025 +0600
+
+    Merge pull request #25 from FaisalHasanEmon/Faisal
+    
+    favicon and title changed
+
+[33mcommit d3643d2e7284fac9a7e30c62ae42d5f38cd637cc[m
+Author: FaisalHasanEmon <faisalhasan5833@gmail.com>
+Date:   Mon Mar 24 06:36:20 2025 +0600
+
+    favicon and title changed
+
+[33mcommit 94fd1197607d9a89c8b5df790b3b792242c12aea[m
+Merge: 613a7f1 00a9a09
+Author: Faisal Hasan Emon <faisalhasanemon@gmail.com>
+Date:   Mon Mar 24 06:20:01 2025 +0600
+
+    Merge pull request #24 from FaisalHasanEmon/Faisal
+    
+    Faisal
+
+[33mcommit 00a9a090281a68b2d66579c41e96a8d41133f94f[m
+Author: FaisalHasanEmon <faisalhasan5833@gmail.com>
+Date:   Mon Mar 24 06:18:15 2025 +0600
+
+    Video calling page text sidebar fixed
+
+[33mcommit 419efbf7a72e06df270305cd565812114bb1fa3b[m
+Author: FaisalHasanEmon <faisalhasan5833@gmail.com>
+Date:   Mon Mar 24 05:44:38 2025 +0600
+
+    Join a Meeting Modal fixed
+
+[33mcommit 02c73e273bb79a444c89545b91b97974c257e883[m
+Author: FaisalHasanEmon <faisalhasan5833@gmail.com>
+Date:   Mon Mar 24 05:24:21 2025 +0600
+
+    Join meeting button updated
+
+[33mcommit 74315df516c82f35edd43aa8dcd20b9990e6ad96[m
+Author: FaisalHasanEmon <faisalhasan5833@gmail.com>
+Date:   Mon Mar 24 03:52:00 2025 +0600
+
+    Feature page placed to it's right position
+
+[33mcommit d73b559fdda73d40d034c7871ce47c39b8ced080[m
+Author: FaisalHasanEmon <faisalhasan5833@gmail.com>
+Date:   Mon Mar 24 03:47:30 2025 +0600
+
+    Faisal: landing page footer fixed
+
+[33mcommit 613a7f1ac49355d852555d8e470e4b95878ee3bc[m
+Merge: 50b1bbd 2cddef0
+Author: Faisal Hasan Emon <faisalhasanemon@gmail.com>
+Date:   Sun Mar 23 11:18:38 2025 +0600
+
+    Merge pull request #23 from FaisalHasanEmon/saikat
+    
+    Saikat: Did work on responsiveness
+
+[33mcommit 2cddef08140c12288d52fd28709cbd528e2539aa[m
+Merge: bd77e37 50b1bbd
+Author: saikat1076 <chakrabortymoni335@gmail.com>
+Date:   Sun Mar 23 10:19:03 2025 +0600
+
+    saikat: fix callInterface responsiveness
+
+[33mcommit bd77e37aa9ac2175da9c7a65727864b9154561b6[m
+Author: saikat1076 <chakrabortymoni335@gmail.com>
+Date:   Sat Mar 22 18:26:53 2025 +0600
+
+    saikat: fix ui responsiveness
+
+[33mcommit 50b1bbdd09acb8647f6d27ef3d0fe0bf3abe4f2b[m
+Merge: 4fd2561 cfd3741
+Author: Abdullah Al Azim <azimalabdullah@gmail.com>
+Date:   Fri Mar 21 16:45:24 2025 +0600
+
+    Merge pull request #22 from FaisalHasanEmon/azim
+    
+    add videocalling feature and fix the problem
+
+[33mcommit cfd37412b9df48cec82bc0ec0f596bbe545b5cb7[m
+Author: unknown <alazim-star>
+Date:   Fri Mar 21 16:42:02 2025 +0600
+
+    add videocalling feature and fix the problem
+
+[33mcommit 4fd256133720776d464c9899fe6ffecfed9b43dd[m
+Merge: 63ce9a9 2394172
+Author: Abdullah Al Azim <azimalabdullah@gmail.com>
+Date:   Fri Mar 21 16:37:15 2025 +0600
+
+    Merge pull request #20 from FaisalHasanEmon/azim
+    
+    change the package name
+
+[33mcommit 23941724d6ff0cb395137a3031126d6fc06289a0[m
+Merge: 3786802 63ce9a9
+Author: unknown <alazim-star>
+Date:   Fri Mar 21 16:35:59 2025 +0600
+
+    change the package name
+
+[33mcommit 37868028555a619d33de722da61fcc52dd202a79[m
+Author: unknown <alazim-star>
+Date:   Fri Mar 21 15:45:30 2025 +0600
+
+    add videocalling landing page
+
+[33mcommit 63ce9a96444490066d6cbebbc62b877dae327d7c[m
+Merge: d63082e 07407e9
+Author: Harishankar Barman <baust.cse.200201001@gmail.com>
+Date:   Thu Mar 20 20:15:10 2025 +0600
+
+    Merge pull request #19 from FaisalHasanEmon/harishankar
+    
+    Harishankar : remove about page from login navbar
+
+[33mcommit 07407e9a720dc37c8b601d462d981f31871dc66f[m
+Author: chayon1001 <baust.cse.200201001@gmail.com>
+Date:   Thu Mar 20 20:14:04 2025 +0600
+
+    Harishankar : remove about page from login navbar
+
+[33mcommit d63082e7e3e4c11b5f9d9f05f02e9044cc143840[m
+Merge: 7b1f8a1 f7a78e5
+Author: Harishankar Barman <baust.cse.200201001@gmail.com>
+Date:   Thu Mar 20 20:06:59 2025 +0600
+
+    Merge pull request #18 from FaisalHasanEmon/harishankar
+    
+    Harishankar : fixed the navbar issues and also created the another na…
+
+[33mcommit 7b1f8a1c3ed977fd0dbd62f82dd9dc2ebc9044c3[m
+Merge: 41c2868 b375359
+Author: Rayhan-50 <rayhanahmed.nstu@gmail.com>
+Date:   Thu Mar 20 11:11:47 2025 +0600
+
+    Merge pull request #17 from FaisalHasanEmon/rayhan
+    
+    Rayhan
+
+[33mcommit b37535945a88e39edf67d6bc50f40b9786f1c688[m
+Merge: bbbfeac 41c2868
+Author: Rayhan-50 <rayhanahmed.nstu@gmail.com>
+Date:   Thu Mar 20 11:11:00 2025 +0600
+
+    code marge successfully
+
+[33mcommit bbbfeac2e5af125cc9fa6596fb6614b3a30e7a75[m
+Author: Rayhan-50 <rayhanahmed.nstu@gmail.com>
+Date:   Thu Mar 20 10:30:52 2025 +0600
+
+    remove unnessary code
+
+[33mcommit 41c2868ed66458855dbb3120eacd0ee08879097e[m
+Merge: 7af7dca 969c28e
+Author: Sahidul Islam Hridoy <eng.sahidul.hridoy@gmail.com>
+Date:   Wed Mar 19 22:03:33 2025 +0400
+
+    Merge pull request #15 from FaisalHasanEmon/Hridoy
+    
+    Hridoy
+
+[33mcommit 969c28e24806dadb855ba0e03948cfc8899de417[m
+Author: DreamerHridoy <eng.sahidul.hridoy@gmail.com>
+Date:   Wed Mar 19 23:51:18 2025 +0600
+
+    done with modal and features
+
+[33mcommit 3e4adb38be55e8bf3fc050690c919e7244a2d6cb[m
+Merge: 5193e99 7af7dca
+Author: Rayhan-50 <rayhanahmed.nstu@gmail.com>
+Date:   Wed Mar 19 23:44:35 2025 +0600
+
+    add generating Meet code and changes some functinality of home page
+
+[33mcommit f7a78e5863c91d83179259dde4bf457217329906[m
+Author: chayon1001 <baust.cse.200201001@gmail.com>
+Date:   Wed Mar 19 16:50:46 2025 +0600
+
+    Harishankar : fixed the navbar issues and also created the another navbar for wihtout user login
+
+[33mcommit 8634814b52a6b4164d98dc3270db22dccc108665[m
+Merge: e63f4e7 7af7dca
+Author: DreamerHridoy <eng.sahidul.hridoy@gmail.com>
+Date:   Wed Mar 19 15:38:36 2025 +0600
+
+    Merge branch 'staging' of https://github.com/FaisalHasanEmon/Meetzy into Hridoy
+
+[33mcommit e63f4e78a86bfd6a89e4865b285a6e5aca1526a2[m
+Author: DreamerHridoy <eng.sahidul.hridoy@gmail.com>
+Date:   Wed Mar 19 15:38:27 2025 +0600
+
+    Your commit message
+
+[33mcommit 7af7dcaf53490df0a89c11d083fdb9e595f968eb[m
+Merge: d4d3a7a f3c64fc
+Author: Harishankar Barman <baust.cse.200201001@gmail.com>
+Date:   Wed Mar 19 15:30:59 2025 +0600
+
+    Merge pull request #14 from FaisalHasanEmon/harishankar
+    
+    Harishankar
+
+[33mcommit f3c64fc4c2aa6bf2c7edde539c6217305f7c9439[m
+Author: chayon1001 <baust.cse.200201001@gmail.com>
+Date:   Wed Mar 19 10:55:47 2025 +0600
+
+    Hari
