@@ -9,9 +9,9 @@ const DashboardLayout = () => {
 
   useEffect(() => {
     if (user?.email === "meetzy1@gmail.com") {
-      setIsAdmin(true); // Mark as admin
+      setIsAdmin(true); 
     } else {
-      setIsAdmin(false); // Regular user
+      setIsAdmin(false); 
     }
     
     // Automatically navigate to the default page when the dashboard is loaded
@@ -19,6 +19,14 @@ const DashboardLayout = () => {
       navigate(isAdmin ? '/dashboard/admin-overview' : '/dashboard/user-overview');
     }
   }, [user, isAdmin, navigate]);
+ 
+  useEffect(() => {
+    if (user) {
+      navigate(isAdmin ? '/dashboard/admin-overview' : '/dashboard/user-overview');
+    }
+  }, [user, isAdmin, navigate]);
+    
+  
 
   const handleLogout = () => {
     logOut(); // Call logOut function
@@ -100,3 +108,4 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
+

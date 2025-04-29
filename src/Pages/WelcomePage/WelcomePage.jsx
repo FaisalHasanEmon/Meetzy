@@ -1,150 +1,167 @@
-import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { motion } from 'framer-motion';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // Animation variants for hero section
+  const heroVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
 
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-  const eidDate = new Date("2025-04-20T00:00:00").getTime();
+  // Animation variants for buttons
+  const buttonVariants = {
+    hover: { scale: 1.05, boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)' },
+    tap: { scale: 0.95 },
+  };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = eidDate - now;
+  // Animation variants for feature cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, delay: i * 0.2 },
+    }),
+  };
 
-      if (distance < 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        clearInterval(timer);
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        setTimeLeft({ days, hours, minutes, seconds });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [eidDate]);
+  // Feature data
+  const features = [
+    {
+      icon: 'https://img.icons8.com/ios-filled/100/ffffff/video-call.png',
+      title: 'HD Video Calls',
+      description: 'Experience crystal-clear video with low latency.',
+    },
+    {
+      icon: 'https://img.icons8.com/ios-filled/100/ffffff/share.png',
+      title: 'Screen Sharing',
+      description: 'Share your screen effortlessly for presentations.',
+    },
+    {
+      icon: 'https://img.icons8.com/ios-filled/100/ffffff/lock.png',
+      title: 'Secure Meetings',
+      description: 'End-to-end encryption for safe communication.',
+    },
+  ];
 
   return (
-    <div className="relative flex h-screen w-full">
-
-     
-      <div className="flex-1 relative overflow-hidden">
-     
-        <img
-          src="https://i.ibb.co.com/yKqRCPh/islamic-8824879-1280.jpg"
-          alt="Eid Background"
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        />
-
-       
-        <div className="absolute top-0 left-0 w-full h-full bg-black/5 backdrop-blur-sm z-10"></div>
-
-       
-        <div className="relative z-20 flex flex-col justify-center items-center h-full p-8 md:p-12 text-center">
-
-         
-          <motion.div
-            className="text-sm md:text-lg font-medium text-white px-3 py-1 rounded shadow-md font-serif"
-            animate={{ scale: [1, 1.02, 1], opacity: [0.8, 1, 0.8] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <div className="container mx-auto px-6 text-center">
+          <motion.h1
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-4xl md:text-6xl font-extrabold leading-tight mb-4"
           >
-            ⏳ Time left for Eid: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
-          </motion.div>
-          <motion.h2
-  className="text-4xl md:text-3xl font-extrabold text-white mt-8"
-  initial={{ opacity: 0, y: -20 }}
-  animate={{
-    opacity: [0, 1, 0.9, 1],
-    y: [0, -5, 0],
-    textShadow: [
-      "0px 0px 0px rgba(255,255,255,0)",
-      "0px 0px 10px rgba(255,255,255,0.8)",
-      "0px 0px 0px rgba(255,255,255,0)",
-    ],
-    scale: [1, 1.05, 1],
-  }}
-  transition={{
-    duration: 2,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
->
-  🌙 Eid Mubarak
-</motion.h2>
-
-      
-         
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#14b6a7] to-[#236ae4] drop-shadow-2xl mt-6">
-            Welcome to{" "}
-            <span className="text-transparent bg-gradient-to-r from-blue-500 to-[#236ae4] bg-clip-text">
-              Meetzy
-            </span>
-          </h1>
-
-          <p className="mt-5 text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 drop-shadow-lg">
-            Connect & Collaborate.
-          </p>
-
-          <p className="mt-3 text-lg text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">
-            <strong className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
-              High-quality video calls
-            </strong>{" "}
-            anytime, anywhere.
-          </p>
-
-          <p className="mt-3 text-lg text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-lime-500">
-            Enjoy{" "}
-            <strong className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-              HD video & crystal-clear audio
-            </strong>{" "}
-            like never before.
-          </p>
-
-        
-          <motion.div
-            className="mt-6"
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            Connect Seamlessly with <span className="text-blue-200">Meetzy</span>
+          </motion.h1>
+          <motion.p
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-lg md:text-xl mb-8"
           >
-            <img
-              src="https://img.icons8.com/ios-filled/100/1e40af/video-call.png"
-              alt="Video Call Icon"
-              className="w-32 h-32 mx-auto drop-shadow-xl"
-            />
-          </motion.div>
-
-        
+            High-quality video calls, anytime, anywhere.
+          </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-4 flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <Link
-              to="/login"
-              className="px-10 py-3 bg-gradient-to-r from-[#14b5a7] to-blue-600 text-white rounded-xl text-xl font-semibold shadow-lg transform transition-all hover:scale-105 hover:shadow-xl duration-300"
-            >
-              Login
+            <Link to="/login">
+              <motion.button
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold shadow-lg"
+                aria-label="Log in to Meetzy"
+              >
+                Login
+              </motion.button>
             </Link>
-            <Link
-              to="/signUp"
-              className="px-10 py-3 bg-transparent border-2 border-blue-600 text-blue-600 rounded-xl text-xl font-semibold shadow-lg transform transition-all hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-xl duration-300"
-            >
-              Sign Up
+            <Link to="/signup">
+              <motion.button
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold"
+                aria-label="Sign up for Meetzy"
+              >
+                Sign Up
+              </motion.button>
             </Link>
           </motion.div>
         </div>
-      </div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-gray-50 to-transparent" />
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+            Why Choose Meetzy?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-gray-50 p-6 rounded-lg shadow-md text-center"
+              >
+                <img
+                  src={feature.icon}
+                  alt={`${feature.title} icon`}
+                  className="w-16 h-16 mx-auto mb-4"
+                />
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
+        <div className="container mx-auto px-6 text-center">
+          <motion.h2
+            variants={heroVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold mb-6"
+          >
+            Ready to Start Your Meeting?
+          </motion.h2>
+          <motion.p
+            variants={heroVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-lg mb-8"
+          >
+            Join Meetzy today and experience seamless collaboration.
+          </motion.p>
+          <Link to="/signup">
+            <motion.button
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold shadow-lg"
+              aria-label="Get started with Meetzy"
+            >
+              Get Started
+            </motion.button>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };
