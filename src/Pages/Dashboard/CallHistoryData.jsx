@@ -8,7 +8,7 @@ const CallHistory = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/users')
+    axios.get('https://meetzy-server.onrender.com/users')
       .then(res => {
         setUsers(res.data);
         generateCallHistory(res.data);
@@ -24,11 +24,11 @@ const CallHistory = () => {
     const calls = [];
     const statuses = ['completed', 'missed'];
 
-    for (let i = 0; i < 20; i++) { // Generate 20 random calls
+    for (let i = 0; i < 20; i++) { 
       const caller = users[Math.floor(Math.random() * users.length)];
       let receiver = users[Math.floor(Math.random() * users.length)];
 
-      // Ensure caller and receiver are not the same
+     
       while (receiver?.email === caller?.email) {
         receiver = users[Math.floor(Math.random() * users.length)];
       }
@@ -37,8 +37,8 @@ const CallHistory = () => {
         calls.push({
           caller: caller.email,
           receiver: receiver.email,
-          duration: Math.floor(Math.random() * 600), // Up to 10 minutes
-          timestamp: new Date(Date.now() - Math.random() * 100000000).toISOString(), // Random past date
+          duration: Math.floor(Math.random() * 600), 
+          timestamp: new Date(Date.now() - Math.random() * 100000000).toISOString(), 
           status: statuses[Math.floor(Math.random() * statuses.length)]
         });
       }

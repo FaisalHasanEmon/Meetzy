@@ -26,6 +26,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        // element: <Home />,
         element: (
           <PrivateRoute>
             <Home />
@@ -75,7 +76,7 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        path: "onlinestatus", // Add a unique path for the dashboard home.
+        path: "onlinestatus", 
         element: <OnlineStatus />,
       },
      
@@ -107,3 +108,4 @@ export const router = createBrowserRouter([
   },
 ]);
 
+router.jsx
