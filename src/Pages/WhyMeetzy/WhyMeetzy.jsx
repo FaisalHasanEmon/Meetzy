@@ -59,7 +59,7 @@ const WhyMeetzy = () => {
                   src="https://www.gstatic.com/meet/premium_carousel_02_174e55774263506d1280ce6552233189.gif" 
                   alt="High-quality video call illustration"
                   className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.05 }} // Hover effect
+                  whileHover={{ scale: 1.05 }} 
                   transition={{ type: "spring", stiffness: 300 }}
                 />
               </div>
@@ -90,7 +90,7 @@ const WhyMeetzy = () => {
                   src="https://www.gstatic.com/meet/premium_carousel_03_4f42ed34b9d0637ce38be87ecd8d1ca0.gif" 
                   alt="Group call illustration"
                   className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.05 }} // Hover effect
+                  whileHover={{ scale: 1.05 }} 
                   transition={{ type: "spring", stiffness: 300 }}
                 />
               </div>
@@ -121,7 +121,7 @@ const WhyMeetzy = () => {
                   src="https://www.gstatic.com/meet/premium_carousel_04_9659d3a952a74b27223836d673fe391f.gif" 
                   alt="Real-time collaboration illustration"
                   className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.05 }} // Hover effect
+                  whileHover={{ scale: 1.05 }} 
                   transition={{ type: "spring", stiffness: 300 }}
                 />
               </div>

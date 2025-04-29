@@ -10,14 +10,14 @@ const AuthNavbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Common link styles
+  
   const linkStyles = "text-white hover:bg-blue-600 transition px-3 py-2 rounded";
   const mobileLinkStyles = "text-white hover:bg-blue-600 transition w-full text-center py-3 rounded";
 
   return (
     <nav className="bg-blue-700 text-white shadow-md">
       <div className="container mx-auto p-4">
-        {/* Desktop Navigation */}
+        
         <div className="hidden md:flex flex-col space-y-2">
           {user?.email ? (
             <>
@@ -43,7 +43,7 @@ const AuthNavbar = () => {
           )}
         </div>
 
-        {/* Mobile Navigation */}
+       
         <div className="md:hidden">
           <div className="flex justify-between items-center">
             <span className="font-medium">Meetzy</span>
@@ -78,7 +78,7 @@ const AuthNavbar = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Dropdown */}
+          
           {isMenuOpen && (
             <div className="mt-3 flex flex-col space-y-2">
               {user?.email ? (

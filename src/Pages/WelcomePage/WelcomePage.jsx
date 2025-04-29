@@ -3,19 +3,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
-  // Animation variants for hero section
+  
   const heroVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
-  // Animation variants for buttons
+  
   const buttonVariants = {
     hover: { scale: 1.05, boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)' },
     tap: { scale: 0.95 },
   };
 
-  // Animation variants for feature cards
+ 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -25,7 +25,7 @@ const WelcomePage = () => {
     }),
   };
 
-  // Feature data
+ 
   const features = [
     {
       icon: 'https://img.icons8.com/ios-filled/100/ffffff/video-call.png',
@@ -46,7 +46,7 @@ const WelcomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
+     
       <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
         <div className="container mx-auto px-6 text-center">
           <motion.h1
@@ -98,7 +98,7 @@ const WelcomePage = () => {
         <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-gray-50 to-transparent" />
       </section>
 
-      {/* Features Section */}
+     
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
@@ -128,7 +128,7 @@ const WelcomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+     
       <section className="py-16 bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
         <div className="container mx-auto px-6 text-center">
           <motion.h2

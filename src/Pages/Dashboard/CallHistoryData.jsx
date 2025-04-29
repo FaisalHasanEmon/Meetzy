@@ -73,7 +73,7 @@ const CallHistory = () => {
     <div className="p-6">
       <h2 className="text-3xl font-bold text-indigo-600 text-center mb-8">📞 Call History Analytics</h2>
 
-      {/* Analytics Cards */}
+      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div className="bg-green-100 text-green-700 p-6 rounded-lg shadow flex items-center gap-4">
           <FaPhoneAlt className="text-3xl" />
@@ -98,7 +98,7 @@ const CallHistory = () => {
         </div>
       </div>
 
-      {/* Call History Table */}
+    
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white rounded-lg overflow-hidden">
           <thead className="bg-indigo-600 text-white">

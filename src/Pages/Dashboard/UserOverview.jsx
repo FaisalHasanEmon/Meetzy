@@ -16,7 +16,7 @@ const UserOverview = () => {
   const isAdmin = user?.email === "meetzy1@gmail.com";
 
   useEffect(() => {
-    // Fetch the list of users (this could be adjusted for a real API call)
+   
     axios.get('https://meetzy-server.onrender.com/users')
       .then(res => {
         setUsers(res.data);
@@ -40,10 +40,10 @@ const UserOverview = () => {
     <div className="container mx-auto">
       <h2 className="text-3xl font-bold mb-8 text-center text-indigo-600">Your Call History 📞</h2>
 
-      {/* Call History Display */}
+     
       {isSmallUserBase ? (
         <>
-          {/* Pie Chart for Call Distribution */}
+          
           <div className="h-64 mb-8">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -64,7 +64,7 @@ const UserOverview = () => {
             </ResponsiveContainer>
           </div>
 
-          {/* Call History Bar Chart */}
+         
           <div className="h-64 mb-8">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={dummyCallHistory}>
@@ -78,7 +78,7 @@ const UserOverview = () => {
           </div>
         </>
       ) : (
-        // Display a message when there are 10 or more users
+        
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h3 className="text-xl font-semibold mb-3">Call History Unavailable</h3>
           <p className="text-gray-700">Call history is not available for more than 10 users.</p>

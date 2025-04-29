@@ -14,7 +14,7 @@ const AdminOverview = () => {
 
   useEffect(() => {
     if (isAdmin) {
-      axios.get('http://localhost:5000/users')
+      axios.get('https://meetzy-server.onrender.com/users')
         .then(res => {
           setUsers(res.data);
           setLoading(false);
@@ -40,7 +40,7 @@ const AdminOverview = () => {
       <h2 className="text-3xl font-bold mb-8 text-center text-indigo-600">Admin Overview</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Pie Chart Section */}
+       
         <div className="flex justify-center bg-white p-6 rounded-lg shadow-lg">
           <PieChart width={300} height={300}>
             <Pie
@@ -62,7 +62,7 @@ const AdminOverview = () => {
           </PieChart>
         </div>
 
-        {/* Registered Users List */}
+     
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h3 className="text-xl font-semibold mb-4 text-center">Registered Users ({users.length})</h3>
           <ul className="space-y-2">
