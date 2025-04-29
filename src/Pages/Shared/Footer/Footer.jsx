@@ -16,7 +16,6 @@ function Footer() {
           
         </aside>
 
-        {/* Navigation Links */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8  lg:text-center container mx-auto sm:p-10">
           <motion.nav
             initial={{ opacity: 0, x: -20 }}
@@ -69,7 +68,7 @@ function Footer() {
             ))}
           </motion.nav>
         </div>
-              {/* Copyright Section */}
+            
       <motion.div
         className="text-center py-4 text-white"
         initial={{ opacity: 0 }}

@@ -131,4 +131,4 @@ const AuthNavbar = () => {
   );
 };
 
-export default AuthNavbar;
+export default AuthNavbar;

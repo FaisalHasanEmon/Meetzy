@@ -17,7 +17,7 @@ const UserOverview = () => {
 
   useEffect(() => {
     // Fetch the list of users (this could be adjusted for a real API call)
-    axios.get('http://localhost:5000/users')
+    axios.get('https://meetzy-server.onrender.com/users')
       .then(res => {
         setUsers(res.data);
         setLoading(false);
@@ -34,7 +34,7 @@ const UserOverview = () => {
 
   const totalUsers = users.length;
 
-  const isSmallUserBase = totalUsers < 10; // Check if the number of users is less than 10
+  const isSmallUserBase = totalUsers < 10; 
 
   return (
     <div className="container mx-auto">

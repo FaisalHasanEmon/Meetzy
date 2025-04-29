@@ -15,7 +15,7 @@ const OnlineStatus = () => {
 
   useEffect(() => {
     if (isAdmin) {
-      axios.get('http://localhost:5000/users')
+      axios.get('https://meetzy-server.onrender.com/users')
         .then(res => {
           setUsers(res.data);
           setLoading(false);

@@ -3,16 +3,16 @@ import axios from 'axios';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const CallHistoryPage = () => {
-  const { user } = useContext(AuthContext); // Get logged-in user from context
+  const { user } = useContext(AuthContext); 
   const [loading, setLoading] = useState(true);
-  const [users, setUsers] = useState([]); // To store user data
-  const [callHistory, setCallHistory] = useState([]); // To store demo call history data
+  const [users, setUsers] = useState([]); 
+  const [callHistory, setCallHistory] = useState([]); 
 
   useEffect(() => {
     setLoading(true); // Start loading
 
     // Simulate fetching user data
-    axios.get('http://localhost:5000/users')
+    axios.get('https://meetzy-server.onrender.com/users')
       .then(res => {
         setUsers(res.data); // Store all users
       })
