@@ -1,92 +1,4 @@
-// import { useState, useContext, useEffect } from "react";
 
-// import { Link } from "react-router-dom";
-// import { FaUserCircle } from "react-icons/fa";
-// import { AuthContext } from "../../../Provider/AuthProvider";
-
-// function Navbar() {
-//   const { user, logOut } = useContext(AuthContext);
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   const toggleMenu = () => setIsOpen(!isOpen);
-
-//   const handleLogout = () => {
-//     logOut();
-//   };
-
-//   return (
-//     <nav className="bg-blue-600 text-white p-4 fixed w-full top-0 shadow-md z-50">
-//       <div className=" flex justify-between ">
-//         <Link to="/" className="text-xl font-bold px-1">
-//           Meetzy
-//         </Link>
-
-        
-
-//         {/* User Profile / Login */}
-//         <div className="hidden md:flex items-center space-x-4">
-//           {user ? (
-//             <div className="relative group">
-//               <button className="flex items-center space-x-2 focus:outline-none">
-//                 <FaUserCircle size={24} />
-//                 <span>{user.displayName}</span>
-//               </button>
-//               {/* Dropdown */}
-//               <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-40 opacity-0 group-hover:opacity-100 transition-opacity">
-//                 {/* <Link
-//                   to="/profile"
-//                   className="block px-4 py-2 hover:bg-gray-200"
-//                 >
-//                   Profile
-//                 </Link> */}
-//                 <button
-//                   onClick={handleLogout}
-//                   className="w-full text-left px-4 py-2 hover:bg-gray-200"
-//                 >
-//                   Logout
-//                 </button>
-//               </div>
-//             </div>
-//           ) : (
-//             <Link
-//               to="/welcomePage"
-//               className="bg-gray-800 px-4 py-2 rounded hover:bg-gray-700"
-//             >
-//               Login
-//             </Link>
-//           )}
-//         </div>
-
-        
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {isOpen && (
-//         <div className="md:hidden bg-blue-700">
-//           {user ? (
-//             <>
-//               <Link to="/profile" className="block py-2 px-4 hover:bg-blue-800">
-//                 Profile
-//               </Link>
-//               <button
-//                 onClick={handleLogout}
-//                 className="w-full text-left py-2 px-4 hover:bg-blue-800"
-//               >
-//                 Logout
-//               </button>
-//             </>
-//           ) : (
-//             <Link to="/login" className="block py-2 px-4 hover:bg-blue-800">
-//               Login
-//             </Link>
-//           )}
-//         </div>
-//       )}
-//     </nav>
-//   );
-// }
-
-// export default Navbar;
 
 
 import { useState, useContext, useEffect } from 'react';
@@ -101,13 +13,13 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Toggle mobile menu
+ 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Toggle dropdown menu
+  
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
-  // Handle logout
+  
   const handleLogout = () => {
     logOut();
     navigate('/welcomePage');
@@ -115,27 +27,27 @@ const Navbar = () => {
     setIsDropdownOpen(false);
   };
 
-  // Close mobile menu on route change
+  
   useEffect(() => {
     setIsOpen(false);
     setIsDropdownOpen(false);
   }, [navigate]);
 
-  // Animation variants for mobile menu
+  
   const menuVariants = {
     hidden: { opacity: 0, y: '-100%' },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
     exit: { opacity: 0, y: '-100%', transition: { duration: 0.3 } },
   };
 
-  // Animation variants for dropdown
+  
   const dropdownVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.2 } },
     exit: { opacity: 0, y: -10, transition: { duration: 0.2 } },
   };
 
-  // Navigation links
+  
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/features', label: 'Features' },
@@ -143,7 +55,7 @@ const Navbar = () => {
   ];
 
   if (loading) {
-    return null; // Prevent rendering until auth is ready
+    return null; 
   }
 
   return (
@@ -227,7 +139,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
+        
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
@@ -238,7 +150,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+     
       <AnimatePresence>
         {isOpen && (
           <motion.div

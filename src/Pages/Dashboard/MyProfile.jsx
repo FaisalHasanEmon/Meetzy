@@ -12,7 +12,7 @@ const MyProfile = () => {
   const [error, setError] = useState(null);
   const fileInputRef = useRef(null);
 
-  // Sync state with user data
+ 
   useEffect(() => {
     if (user) {
       setName(user.name || '');
@@ -21,7 +21,7 @@ const MyProfile = () => {
     }
   }, [user]);
 
-  // Handle profile picture upload
+ 
   const handleProfilePicChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -38,28 +38,27 @@ const MyProfile = () => {
     }
   };
 
-  // Trigger file input click
+  
   const handleProfilePicClick = () => {
     if (editable) {
       fileInputRef.current.click();
     }
   };
 
-  // Toggle edit mode
+ 
   const handleEditToggle = () => {
     setEditable(!editable);
     setError(null);
   };
 
-  // Save profile changes
+  
   const handleSave = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      // Simulate API call to update profile
-      // Replace with actual backend API call
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock delay
-      // Example: await updateProfile({ name, email, profilePic });
+    
+      await new Promise((resolve) => setTimeout(resolve, 1000)); 
+      
       alert('Profile updated successfully!');
       setEditable(false);
     } catch (err) {
@@ -72,7 +71,7 @@ const MyProfile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-gray-100 flex items-center justify-center p-4">
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:shadow-2xl">
-        {/* Profile Header */}
+       
         <div className="flex flex-col sm:flex-row items-center mb-8">
           <div className="relative group">
             <div
@@ -112,7 +111,7 @@ const MyProfile = () => {
           </div>
         </div>
 
-        {/* Error Message */}
+       
         {error && (
           <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg flex items-center animate-slide-in">
             <FaTimesCircle className="mr-2" />
@@ -120,7 +119,7 @@ const MyProfile = () => {
           </div>
         )}
 
-        {/* User Information */}
+        
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <label className="text-xl font-semibold text-gray-700 mb-2 sm:mb-0">
@@ -161,7 +160,7 @@ const MyProfile = () => {
           </div>
         </div>
 
-        {/* Edit/Save Button */}
+       
         <div className="flex justify-end mt-8">
           {editable ? (
             <button
@@ -208,7 +207,7 @@ const MyProfile = () => {
         </div>
       </div>
 
-      {/* Custom CSS for Animations */}
+      
       <style jsx>{`
         @keyframes fadeIn {
           from {

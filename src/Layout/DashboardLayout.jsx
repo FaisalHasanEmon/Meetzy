@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 const DashboardLayout = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     if (user?.email === "meetzy1@gmail.com") {
@@ -14,7 +14,7 @@ const DashboardLayout = () => {
       setIsAdmin(false); 
     }
     
-    // Automatically navigate to the default page when the dashboard is loaded
+    
     if (user) {
       navigate(isAdmin ? '/dashboard/admin-overview' : '/dashboard/user-overview');
     }
@@ -29,20 +29,20 @@ const DashboardLayout = () => {
   
 
   const handleLogout = () => {
-    logOut(); // Call logOut function
-    navigate('/welcomePage'); // Redirect to home page after logout
+    logOut(); 
+    navigate('/welcomePage'); 
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
+     
       <div className="min-h-screen w-64 bg-blue-500 p-4">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-white">Dashboard</h1>
         </div>
 
         <ul className="space-y-2">
-          {/* Admin Links */}
+         
           {isAdmin && (
             <>
               <li>
@@ -68,7 +68,7 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {/* User Links */}
+         
           {!isAdmin && user?.email && (
             <>
               <li>
@@ -89,7 +89,7 @@ const DashboardLayout = () => {
             </>
           )}
           
-          {/* Logout */}
+         
           <li>
             <button onClick={handleLogout} className="text-white hover:bg-orange-600 p-2 rounded block w-full">
               Log Out
@@ -98,10 +98,10 @@ const DashboardLayout = () => {
         </ul>
       </div>
 
-      {/* Main Content */}
+    
       <div className="flex-1 p-8">
         <h2 className="text-2xl font-bold">{isAdmin ? 'Admin Dashboard' : 'User Dashboard'}</h2>
-        <Outlet /> {/* Render nested route content */}
+        <Outlet />
       </div>
     </div>
   );

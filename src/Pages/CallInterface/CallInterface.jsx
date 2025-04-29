@@ -12,8 +12,7 @@ import { io } from 'socket.io-client';
 import Swal from 'sweetalert2';
 
 const BACKEND_URL =
-//  process.env.NODE_ENV === 'development' 
-  // ? 'http://localhost:5000' 
+
    'https://meetzy-server.onrender.com';
 
 const CallInterface = () => {
@@ -22,7 +21,7 @@ const CallInterface = () => {
   const remoteVideosRef = useRef(null);
   const navigate = useNavigate();
 
-  // State variables
+  
   const [localStream, setLocalStream] = useState(null);
   const [screenStream, setScreenStream] = useState(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -213,7 +212,7 @@ const CallInterface = () => {
       container.id = `container-${userId}`;
       container.appendChild(videoElement);
       
-      // Add user info overlay
+     
       const userInfo = document.createElement('div');
       userInfo.className = 'absolute bottom-2 left-2 bg-gray-800 text-white px-2 py-1 rounded';
       userInfo.textContent = participants.find(p => p.userId === userId)?.email || 'Participant';

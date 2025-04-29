@@ -5,13 +5,13 @@ import { AuthContext } from '../Provider/AuthProvider';
 const Profile = () => {
   const { user } = useContext(AuthContext);
 
-  // Animation variants for the profile card
+  
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
-  // Animation variants for stats
+  
   const statVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: (i) => ({
@@ -29,7 +29,7 @@ const Profile = () => {
         animate="visible"
         className="bg-white shadow-2xl rounded-2xl overflow-hidden w-full max-w-2xl"
       >
-        {/* Header Section */}
+        
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 sm:p-6 text-white text-center relative">
           <img
             className="w-24 sm:w-32 h-24 sm:h-32 rounded-full mx-auto border-4 border-white shadow-xl"
@@ -42,7 +42,7 @@ const Profile = () => {
           <p className="mt-1 sm:mt-2 text-base sm:text-lg">Hello, {user?.displayName || 'Guest User'}</p>
         </div>
 
-        {/* Profile Details */}
+       
         <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 text-gray-700">
             <div>
@@ -60,7 +60,7 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Stats Section */}
+         
           <div className="flex justify-around text-center mt-4 sm:mt-6">
             <motion.div custom={0} variants={statVariants} initial="hidden" animate="visible">
               <p className="text-lg sm:text-xl font-bold text-indigo-600">56</p>
@@ -76,7 +76,7 @@ const Profile = () => {
             </motion.div>
           </div>
 
-          {/* Action Button */}
+         
           <div className="flex justify-center mt-4 sm:mt-6">
             <button
               className="px-4 sm:px-6 py-2 rounded-full border border-indigo-600 text-indigo-600 hover:bg-indigo-100 transition duration-300 text-sm sm:text-base"

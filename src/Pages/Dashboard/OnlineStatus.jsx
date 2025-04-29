@@ -57,7 +57,7 @@ const OnlineStatus = () => {
         </div>
         <p className="text-gray-600 mb-6">{onlineUsers} users online now</p>
 
-        {/* Donut Chart */}
+       
         <div className="w-full md:w-1/2 h-80">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>

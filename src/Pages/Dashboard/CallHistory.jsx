@@ -9,34 +9,33 @@ const CallHistoryPage = () => {
   const [callHistory, setCallHistory] = useState([]); 
 
   useEffect(() => {
-    setLoading(true); // Start loading
+    setLoading(true); 
 
-    // Simulate fetching user data
+    
     axios.get('https://meetzy-server.onrender.com/users')
       .then(res => {
-        setUsers(res.data); // Store all users
+        setUsers(res.data); 
       })
       .catch(err => {
         console.error('Error fetching users:', err);
       });
 
-    // Simulate demo call history data
+    
     const demoHistory = users.map(user => {
       return {
         userName: user.name,
         userEmail: user.email,
         callRecords: [
-          { date: '2025-04-21', calls: Math.floor(Math.random() * 5) + 1 },  // Random number of calls
+          { date: '2025-04-21', calls: Math.floor(Math.random() * 5) + 1 },  
           { date: '2025-04-22', calls: Math.floor(Math.random() * 5) + 1 },
           { date: '2025-04-23', calls: Math.floor(Math.random() * 5) + 1 }
         ]
       };
     });
 
-    setCallHistory(demoHistory); // Set demo call history for all users
-    setLoading(false); // Simulate loading finish
-  }, [users]); // When users data changes, rerun useEffect
-
+    setCallHistory(demoHistory); 
+    setLoading(false); 
+  }, [users]); 
   if (loading) {
     return <div className="text-center mt-20 text-xl">Loading...</div>;
   }
@@ -45,7 +44,7 @@ const CallHistoryPage = () => {
     <div className="container mx-auto p-8">
       <h2 className="text-3xl font-bold mb-8 text-center text-indigo-600">User Call History 📞</h2>
 
-      {/* Displaying the logged-in user's name */}
+     
       {user && (
         <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
           <h3 className="text-2xl font-semibold text-indigo-600">Welcome, {user.name}!</h3>
