@@ -10,7 +10,7 @@ const AboutUs = () => {
     {
       name: "Azim",
       role: "UI/UX Designer",
-      img: "https://i.ibb.co/VbVHqvx/saikat.png",
+      img: "https://i.ibb.co.com/cKKVDfQb/Untitled-design-2.png",
     },
     {
       name: "Saikat",
